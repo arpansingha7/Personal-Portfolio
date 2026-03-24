@@ -7,26 +7,55 @@ import { Chatbot } from "@/components/organisms/Chatbot";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background relative selection:bg-primary/30">
-      {/* Abstract Background Glow */}
-      <div className="absolute top-0 left-0 w-full h-screen overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px] mix-blend-multiply dark:mix-blend-color-dodge animate-pulse" />
-        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[60%] rounded-full bg-secondary/20 blur-[120px] mix-blend-multiply dark:mix-blend-color-dodge animate-pulse delay-1000" />
-      </div>
-
+    <div className="min-h-screen bg-[#0a0a0a] relative">
       <Navbar />
-      
-      <main className="flex flex-col gap-16 lg:gap-32 pb-32">
+
+      <main>
+        {/* Hero takes full viewport — no gap needed here */}
         <HeroSection />
-        <ProjectList />
-        <LiveActivity />
-        <ContactForm />
+
+        {/* Below-hero sections: separated by a consistent 6rem gap on desktop */}
+        <div className="flex flex-col gap-0">
+          <ProjectList />
+
+          {/* Divider */}
+          <div className="w-full max-w-7xl mx-auto px-6">
+            <div className="border-t border-white/[0.05]" />
+          </div>
+
+          <LiveActivity />
+
+          {/* Divider */}
+          <div className="w-full max-w-7xl mx-auto px-6">
+            <div className="border-t border-white/[0.05]" />
+          </div>
+
+          <ContactForm />
+        </div>
       </main>
 
       <Chatbot />
 
-      <footer className="border-t border-white/10 py-8 text-center text-muted-foreground text-sm flex flex-col items-center justify-center">
-        <p>© 2026 Arpan&apos;s Portfolio. Built with Next.js & Tailwind CSS.</p>
+      <footer className="border-t border-white/[0.06] mt-24 py-12">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-white/20 text-xs tracking-widest uppercase font-light">
+            © 2026 Arpan Singha. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <a href="https://github.com/arpansingha7" target="_blank" rel="noreferrer"
+              className="text-white/20 text-xs tracking-widest uppercase font-light hover:text-white/60 transition-colors">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/-arpansingha-" target="_blank" rel="noreferrer"
+              className="text-white/20 text-xs tracking-widest uppercase font-light hover:text-white/60 transition-colors">
+              LinkedIn
+            </a>
+            <a href="/#contact"
+              className="text-white/20 text-xs tracking-widest uppercase font-light hover:text-white/60 transition-colors">
+              Contact
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   );

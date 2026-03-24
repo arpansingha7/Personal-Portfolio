@@ -5,90 +5,155 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ArrowUpRight, Mail, Phone, ExternalLink } from "lucide-react";
+
+const CONTACT_ITEMS = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "arpansingha16703@gmail.com",
+    href: "mailto:arpansingha16703@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+91 7001835922",
+    href: "tel:+917001835922",
+  },
+  {
+    icon: ExternalLink,
+    label: "LinkedIn",
+    value: "/in/-arpansingha-",
+    href: "https://www.linkedin.com/in/-arpansingha-",
+  },
+];
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setTimeout(() => setIsSubmitted(false), 3500);
   };
+
   return (
-    <section id="contact" className="px-6 w-full max-w-7xl mx-auto relative">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <section id="contact" className="py-24 px-6 w-full max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+        {/* Left: Info */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Let&apos;s Build Something.</h2>
-          <p className="text-muted-foreground text-lg mb-8">
-            Whether you have a specific project in mind or just want to explore possibilities, I&apos;m ready to collaborate. Let&apos;s create an experience that stands out.
+          <p className="text-xs tracking-[0.3em] uppercase text-white/25 font-light mb-3">
+            Get in Touch
           </p>
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <div className="w-12 h-12 bg-foreground/5 rounded-full flex items-center justify-center border border-foreground/10">
-                <span className="text-xl">📧</span>
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Email</p>
-                <p>arpansingha16703@gmail.com</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <div className="w-12 h-12 bg-foreground/5 rounded-full flex items-center justify-center border border-foreground/10">
-                <span className="text-xl">📱</span>
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Phone</p>
-                <p>+91 7001835922</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <div className="w-12 h-12 bg-foreground/5 rounded-full flex items-center justify-center border border-foreground/10">
-                <span className="text-xl">🔗</span>
-              </div>
-              <div>
-                <p className="font-medium text-foreground">LinkedIn</p>
-                <a href="https://www.linkedin.com/in/-arpansingha-" target="_blank" className="hover:text-primary transition-colors">/in/-arpansingha-</a>
-              </div>
-            </div>
+          <h2
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              letterSpacing: "0.02em",
+              lineHeight: 1,
+              background: "linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.4))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              marginBottom: "1rem",
+            }}
+          >
+            Let&apos;s Build Something.
+          </h2>
+          <p className="text-white/35 text-sm font-light leading-relaxed mb-12 max-w-sm">
+            Whether you have a project in mind or just want to connect — I&apos;m ready to collaborate
+            and build experiences that matter.
+          </p>
+
+          <div className="flex flex-col gap-6">
+            {CONTACT_ITEMS.map(({ icon: Icon, label, value, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                className="group flex items-center gap-4"
+              >
+                <div className="w-10 h-10 rounded-xl border border-white/[0.07] bg-white/[0.03] flex items-center justify-center shrink-0 group-hover:border-white/20 group-hover:bg-white/[0.06] transition-all">
+                  <Icon size={15} className="text-white/40 group-hover:text-white/70 transition-colors" />
+                </div>
+                <div>
+                  <p className="text-white/25 text-xs tracking-widest uppercase font-light">{label}</p>
+                  <p className="text-white/65 text-sm mt-0.5 group-hover:text-white/90 transition-colors">{value}</p>
+                </div>
+                <ArrowUpRight size={12} className="ml-auto text-white/15 group-hover:text-white/50 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            ))}
           </div>
         </motion.div>
 
+        {/* Right: Form */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-card/30 backdrop-blur-xl border border-foreground/10 p-8 rounded-3xl"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
         >
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground/80">Name</label>
-                <Input placeholder="John Doe" className="bg-white/[0.02] border border-white/10 rounded-xl px-4 focus-visible:border-white/40 focus-visible:bg-white/[0.04] focus-visible:ring-0 transition-all text-white h-12" required />
+          {/* Form card */}
+          <div className="relative rounded-2xl border border-white/[0.07] bg-white/[0.02] backdrop-blur-xl p-8">
+            {/* Subtle top glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-light tracking-widest uppercase text-white/30">Name</label>
+                  <Input
+                    placeholder="Arpan Singha"
+                    className="h-11 bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-white/25 hover:border-white/15 transition-colors"
+                    required
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-light tracking-widest uppercase text-white/30">Email</label>
+                  <Input
+                    type="email"
+                    placeholder="you@google.com"
+                    className="h-11 bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-white/25 hover:border-white/15 transition-colors"
+                    required
+                  />
+                </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground/80">Email</label>
-                <Input type="email" placeholder="john@example.com" className="bg-white/[0.02] border border-white/10 rounded-xl px-4 focus-visible:border-white/40 focus-visible:bg-white/[0.04] focus-visible:ring-0 transition-all text-white h-12" required />
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-light tracking-widest uppercase text-white/30">Subject</label>
+                <Input
+                  placeholder="Project Collaboration"
+                  className="h-11 bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-white/25 hover:border-white/15 transition-colors"
+                  required
+                />
               </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground/80">Subject</label>
-              <Input placeholder="Project Inquiry" className="bg-white/[0.02] border border-white/10 rounded-xl px-4 focus-visible:border-white/40 focus-visible:bg-white/[0.04] focus-visible:ring-0 transition-all text-white h-12" required />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground/80">Message</label>
-              <Textarea placeholder="Tell me about your project..." className="min-h-[150px] bg-white/[0.02] border border-white/10 rounded-xl p-4 focus-visible:border-white/40 focus-visible:bg-white/[0.04] focus-visible:ring-0 transition-all text-white resize-none" required />
-            </div>
-            <Button className="w-full h-14 text-md font-medium bg-white text-black hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:scale-[1.02] active:scale-[0.98] transition-all rounded-xl" disabled={isSubmitted}>
-              {isSubmitted ? "Message Sent Successfully!" : "Send Message"}
-            </Button>
-          </form>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-light tracking-widest uppercase text-white/30">Message</label>
+                <Textarea
+                  placeholder="Tell me about your project or idea..."
+                  className="min-h-[130px] bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/20 focus-visible:ring-0 focus-visible:border-white/25 hover:border-white/15 transition-colors resize-none"
+                  required
+                />
+              </div>
+
+              <Button
+                className="w-full h-12 rounded-xl font-light tracking-widest text-xs uppercase bg-white text-black hover:bg-white/92 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-[0_0_24px_rgba(255,255,255,0.08)]"
+                disabled={isSubmitted}
+              >
+                {isSubmitted ? "✓ Message Sent" : "Send Message"}
+              </Button>
+            </form>
+          </div>
         </motion.div>
+
       </div>
     </section>
   );
