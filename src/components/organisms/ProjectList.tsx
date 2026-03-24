@@ -85,11 +85,18 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
           font-family: 'Bebas Neue', sans-serif;
           font-size: clamp(1.8rem, 3.5vw, 3rem);
           letter-spacing: 0.02em;
-          color: rgba(255,255,255,0.88);
+          background: linear-gradient(to right, rgba(255,255,255,0.85), rgba(255,255,255,0.4));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           line-height: 1;
-          transition: color 0.25s;
+          transition: all 0.3s ease;
         }
-        .project-row:hover .proj-title { color: #fff; }
+        .project-row:hover .proj-title { 
+          background: linear-gradient(to right, #fff, #60a5fa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          transform: translateX(10px);
+        }
 
         .proj-desc {
           font-family: 'DM Sans', sans-serif;
