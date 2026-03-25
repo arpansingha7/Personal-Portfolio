@@ -118,7 +118,7 @@ function MatchBar({ value, color }: { value: number; color: string }) {
 
 export default function HirePage() {
   return (
-    <div style={{ minHeight: "100vh", background: "#0a0a0a", position: "relative" }}>
+    <div style={{ minHeight: "100vh", background: "var(--background)", position: "relative" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -131,16 +131,17 @@ export default function HirePage() {
         /* Glass card base */
         .glass-card {
           border-radius: 20px;
-          border: 1px solid rgba(255,255,255,0.07);
-          background: rgba(255,255,255,0.025);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           padding: 2rem;
-          transition: border-color 0.3s, background 0.3s;
+          transition: all 0.3s ease;
+          box-shadow: var(--card-shadow);
         }
         .glass-card:hover {
-          border-color: rgba(255,255,255,0.13);
-          background: rgba(255,255,255,0.04);
+          border-color: var(--muted-foreground);
+          background: var(--accent);
         }
 
         /* Availability pill */
@@ -154,9 +155,9 @@ export default function HirePage() {
           padding: 0.45rem 1rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.1em;
-          color: #34d399;
+          color: #10b981;
         }
         .avail-dot {
           width: 7px; height: 7px;
@@ -183,10 +184,10 @@ export default function HirePage() {
         .eyebrow {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.6rem;
-          font-weight: 300;
+          font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: var(--muted-foreground);
           margin-bottom: 0.6rem;
         }
 
@@ -196,7 +197,7 @@ export default function HirePage() {
           font-size: clamp(2.4rem, 4.5vw, 3.8rem);
           letter-spacing: 0.01em;
           line-height: 0.95;
-          background: linear-gradient(to right, rgba(255,255,255,0.92), rgba(255,255,255,0.35));
+          background: linear-gradient(to right, var(--foreground), var(--muted-foreground));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -204,15 +205,15 @@ export default function HirePage() {
         /* Role card */
         .role-card {
           border-radius: 16px;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.02);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           padding: 1.5rem;
           transition: all 0.3s ease;
           cursor: default;
         }
         .role-card:hover {
-          border-color: rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.04);
+          border-color: var(--muted-foreground);
+          background: var(--accent);
           transform: translateY(-3px);
         }
 
@@ -252,20 +253,20 @@ export default function HirePage() {
           gap: 0.5rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #0a0a0a;
-          background: #fff;
+          color: var(--background);
+          background: var(--foreground);
           border: none;
           padding: 0.75rem 1.6rem;
           border-radius: 999px;
           text-decoration: none;
-          transition: opacity 0.2s, transform 0.2s;
+          transition: all 0.2s;
           white-space: nowrap;
-          box-shadow: 0 0 30px rgba(255,255,255,0.08);
+          box-shadow: var(--card-shadow);
         }
-        .dl-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .dl-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* Connect button */
         .connect-btn {
@@ -274,12 +275,12 @@ export default function HirePage() {
           gap: 0.5rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.7);
+          color: var(--muted-foreground);
           background: transparent;
-          border: 1px solid rgba(255,255,255,0.14);
+          border: 1px solid var(--border);
           padding: 0.75rem 1.6rem;
           border-radius: 999px;
           text-decoration: none;
@@ -287,8 +288,8 @@ export default function HirePage() {
           white-space: nowrap;
         }
         .connect-btn:hover {
-          border-color: rgba(255,255,255,0.3);
-          color: #fff;
+          border-color: var(--muted-foreground);
+          color: var(--foreground);
           transform: translateY(-1px);
         }
 
@@ -299,8 +300,8 @@ export default function HirePage() {
           pointer-events: none;
           z-index: 0;
           background:
-            radial-gradient(ellipse 60% 50% at 70% 20%, rgba(59,130,246,0.07) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 40% at 20% 80%, rgba(52,211,153,0.05) 0%, transparent 70%);
+            radial-gradient(ellipse 60% 50% at 70% 20%, rgba(59,130,246,0.05) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 40% at 20% 80%, rgba(52,211,153,0.04) 0%, transparent 70%);
         }
 
         @media (max-width: 768px) {
@@ -347,14 +348,14 @@ export default function HirePage() {
                 }}
               >
                 <span style={{
-                  background: "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%)",
+                  background: "linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}>
                   LET&apos;S BUILD<br />
                 </span>
                 <span style={{
-                  background: "linear-gradient(135deg, #3b82f6 0%, #34d399 100%)",
+                  background: "linear-gradient(135deg, #3b82f6 0%, #10b981 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}>
@@ -367,7 +368,7 @@ export default function HirePage() {
                 fontSize: "1rem",
                 fontWeight: 300,
                 lineHeight: 1.75,
-                color: "rgba(255,255,255,0.42)",
+                color: "var(--muted-foreground)",
                 maxWidth: "520px",
                 marginBottom: "2rem",
               }}>
@@ -411,10 +412,10 @@ export default function HirePage() {
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.72rem",
                     fontWeight: 300,
-                    color: "rgba(255,255,255,0.35)",
+                    color: "var(--muted-foreground)",
                     letterSpacing: "0.05em",
                   }}>
-                    <Icon size={12} style={{ color: "rgba(255,255,255,0.25)", flexShrink: 0 }} />
+                    <Icon size={12} style={{ color: "var(--muted-foreground)", opacity: 0.5, flexShrink: 0 }} />
                     {text}
                   </div>
                 ))}
@@ -456,7 +457,7 @@ export default function HirePage() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.8rem",
                       fontWeight: 500,
-                      color: "rgba(255,255,255,0.8)",
+                      color: "var(--foreground)",
                       marginBottom: "0.75rem",
                       lineHeight: 1.3,
                     }}>
@@ -483,8 +484,8 @@ export default function HirePage() {
                           fontSize: "0.55rem",
                           letterSpacing: "0.12em",
                           textTransform: "uppercase",
-                          color: "rgba(255,255,255,0.28)",
-                          border: "1px solid rgba(255,255,255,0.08)",
+                          color: "var(--muted-foreground)",
+                          border: "1px solid var(--border)",
                           borderRadius: "999px",
                           padding: "0.15rem 0.5rem",
                         }}>
@@ -536,7 +537,7 @@ export default function HirePage() {
                             fontFamily: "'DM Sans', sans-serif",
                             fontSize: "0.8rem",
                             fontWeight: 500,
-                            color: "rgba(255,255,255,0.8)",
+                            color: "var(--foreground)",
                             marginBottom: "0.25rem",
                           }}>
                             {item.heading}
@@ -546,7 +547,7 @@ export default function HirePage() {
                             fontSize: "0.75rem",
                             fontWeight: 300,
                             lineHeight: 1.65,
-                            color: "rgba(255,255,255,0.35)",
+                            color: "var(--muted-foreground)",
                           }}>
                             {item.body}
                           </p>
@@ -583,7 +584,7 @@ export default function HirePage() {
                         fontSize: "0.6rem",
                         fontWeight: 400,
                         letterSpacing: "0.15em",
-                        color: "rgba(255,255,255,0.25)",
+                        color: "var(--muted-foreground)",
                         paddingTop: "0.1rem",
                         textAlign: "right",
                       }}>
@@ -596,8 +597,8 @@ export default function HirePage() {
                         <div style={{
                           width: 7, height: 7,
                           borderRadius: "50%",
-                          background: i === TIMELINE.length - 1 ? "#34d399" : "rgba(255,255,255,0.15)",
-                          boxShadow: i === TIMELINE.length - 1 ? "0 0 8px #34d399" : "none",
+                          background: i === TIMELINE.length - 1 ? "#10b981" : "var(--border)",
+                          boxShadow: i === TIMELINE.length - 1 ? "0 0 8px #10b981" : "none",
                           position: "relative",
                           zIndex: 1,
                           marginRight: "1rem",
@@ -611,7 +612,7 @@ export default function HirePage() {
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.78rem",
                         fontWeight: 300,
-                        color: i === TIMELINE.length - 1 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.38)",
+                        color: i === TIMELINE.length - 1 ? "var(--foreground)" : "var(--muted-foreground)",
                         lineHeight: 1.5,
                         paddingTop: "0.05rem",
                       }}>
@@ -648,9 +649,9 @@ export default function HirePage() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
                       fontWeight: 400,
-                      color: "rgba(255,255,255,0.6)",
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.08)",
+                      color: "var(--muted-foreground)",
+                      background: "var(--accent)",
+                      border: "1px solid var(--border)",
                       borderRadius: "999px",
                       padding: "0.5rem 1rem",
                     }}
@@ -690,7 +691,7 @@ export default function HirePage() {
                   fontFamily: "'Bebas Neue', sans-serif",
                   fontSize: "clamp(2rem, 4vw, 3.2rem)",
                   letterSpacing: "0.02em",
-                  background: "linear-gradient(to right, #fff, rgba(255,255,255,0.5))",
+                  background: "linear-gradient(to right, var(--foreground), var(--muted-foreground))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   marginBottom: "0.75rem",
@@ -701,7 +702,7 @@ export default function HirePage() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.85rem",
                   fontWeight: 300,
-                  color: "rgba(255,255,255,0.35)",
+                  color: "var(--muted-foreground)",
                   maxWidth: "400px",
                   margin: "0 auto 2rem",
                   lineHeight: 1.75,

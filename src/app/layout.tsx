@@ -8,6 +8,9 @@ const ubuntuFont = Ubuntu({
 });
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollProgress } from "@/components/organisms/ScrollProgress";
+import { CursorGlow } from "@/components/organisms/CursorGlow";
+import TransitionProvider from "@/components/TransitionProvider";
 
 export const metadata: Metadata = {
   title: "Arpan's Portfolio",
@@ -28,7 +31,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ScrollProgress />
+          <CursorGlow />
+          <TransitionProvider>
+            {children}
+          </TransitionProvider>
         </ThemeProvider>
       </body>
     </html>

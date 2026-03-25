@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Computer } from "lucide-react";
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, Computer, Globe } from "lucide-react";
 import { useRef } from "react";
+import Magnetic from "@/components/Magnetic";
 
 const projects = [
   {
@@ -25,25 +26,62 @@ const projects = [
   },
   {
     index: "03",
-    title: "Network Monitor",
-    description: "IP Networking tool to monitor packets, analyze traffic patterns, and enforce cybersecurity baselines across local networks.",
-    tags: ["Networking", "Python", "Cybersecurity"],
-    link: "#",
-    github: "https://github.com/arpansingha7",
-    accent: "#a78bfa",
+    title: "Hyperlocal Hiring Network",
+    description: "A comprehensive MERN stack application for local job discovery and application management, featuring JWT authentication and Cloudinary image handling.",
+    tags: ["MERN Stack", "Node.js", "MongoDB", "Auth"],
+    link: "https://hyperlocal-hiring-network.vercel.app/",
+    github: "https://github.com/arpansingha7/Hyperlocal-Hiring-Network",
+    accent: "#6366f1",
   },
 ];
 
 function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: number }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  // 3D Tilt Logic
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   return (
     <motion.div
       ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: idx * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
       className="project-row group"
     >
       <style>{`
@@ -54,45 +92,46 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
           align-items: start;
           gap: 2rem;
           padding: 2.2rem 0;
-          border-top: 1px solid rgba(255,255,255,0.07);
+          border-top: 1px solid var(--border);
           cursor: pointer;
           transition: background 0.3s;
         }
-        .project-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .project-row:last-child { border-bottom: 1px solid var(--border); }
 
         .project-row::before {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+          background: linear-gradient(90deg, var(--accent) 5%, transparent 100%);
           opacity: 0;
           transition: opacity 0.3s;
         }
-        .project-row:hover::before { opacity: 1; }
+        .project-row:hover::before { opacity: 0.05; }
 
         .proj-num {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.65rem;
-          font-weight: 300;
+          font-weight: 500;
           letter-spacing: 0.2em;
-          color: rgba(255,255,255,0.22);
+          color: var(--muted-foreground);
           padding-top: 0.25rem;
+          opacity: 0.6;
         }
 
-        .proj-body { display: flex; flex-direction: column; gap: 0.75rem; }
+        .proj-body { display: flex; flex-direction: column; gap: 0.75rem; z-index: 1; }
 
         .proj-title {
           font-family: 'Bebas Neue', sans-serif;
           font-size: clamp(1.8rem, 3.5vw, 3rem);
           letter-spacing: 0.02em;
-          background: linear-gradient(to right, rgba(255,255,255,0.85), rgba(255,255,255,0.4));
+          background: linear-gradient(to right, var(--foreground), var(--muted-foreground));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           line-height: 1;
           transition: all 0.3s ease;
         }
         .project-row:hover .proj-title { 
-          background: linear-gradient(to right, #fff, #60a5fa);
+          background: linear-gradient(to right, var(--foreground), var(--accent));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           transform: translateX(10px);
@@ -103,11 +142,11 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
           font-size: 0.82rem;
           font-weight: 300;
           line-height: 1.7;
-          color: rgba(255,255,255,0.38);
+          color: var(--muted-foreground);
           max-width: 520px;
           transition: color 0.25s;
         }
-        .project-row:hover .proj-desc { color: rgba(255,255,255,0.55); }
+        .project-row:hover .proj-desc { color: var(--foreground); }
 
         .proj-tags {
           display: flex;
@@ -117,18 +156,18 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
         .proj-tag {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.6rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.3);
-          border: 1px solid rgba(255,255,255,0.1);
+          color: var(--muted-foreground);
+          border: 1px solid var(--border);
           padding: 0.2rem 0.6rem;
           border-radius: 999px;
-          transition: border-color 0.25s, color 0.25s;
+          transition: all 0.25s;
         }
         .project-row:hover .proj-tag {
-          border-color: rgba(255,255,255,0.2);
-          color: rgba(255,255,255,0.5);
+          border-color: var(--muted-foreground);
+          color: var(--foreground);
         }
 
         .proj-actions {
@@ -138,6 +177,7 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
           gap: 0.75rem;
           padding-top: 0.15rem;
           flex-shrink: 0;
+          z-index: 2;
         }
 
         .proj-action-btn {
@@ -146,29 +186,30 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
           gap: 0.4rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.65rem;
-          font-weight: 400;
+          font-weight: 600;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           text-decoration: none;
-          padding: 0.45rem 0.9rem;
+          padding: 0.5rem 1rem;
           border-radius: 999px;
           transition: all 0.22s;
           white-space: nowrap;
         }
         .proj-action-btn.primary {
-          background: #fff;
-          color: #0a0a0a;
+          background: var(--foreground);
+          color: var(--background);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .proj-action-btn.primary:hover { opacity: 0.85; transform: translateY(-1px); }
+        .proj-action-btn.primary:hover { opacity: 0.9; transform: scale(1.05); }
 
         .proj-action-btn.ghost {
-          border: 1px solid rgba(255,255,255,0.12);
-          color: rgba(255,255,255,0.45);
+          border: 1px solid var(--border);
+          color: var(--muted-foreground);
         }
         .proj-action-btn.ghost:hover {
-          border-color: rgba(255,255,255,0.3);
-          color: rgba(255,255,255,0.8);
-          transform: translateY(-1px);
+          border-color: var(--foreground);
+          color: var(--foreground);
+          transform: scale(1.05);
         }
 
         /* Accent line that slides in on hover */
@@ -224,12 +265,16 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
 
       {/* Actions */}
       <div className="proj-actions">
-        <a href={project.link} className="proj-action-btn primary">
-          Live <ArrowUpRight size={11} strokeWidth={2} />
-        </a>
-        <a href={project.github} className="proj-action-btn ghost" target="_blank" rel="noopener noreferrer">
-          <Computer size={11} /> Code
-        </a>
+        <Magnetic>
+          <a href={project.link} className="proj-action-btn primary">
+            Live <ArrowUpRight size={11} strokeWidth={2} />
+          </a>
+        </Magnetic>
+        <Magnetic>
+          <a href={project.github} className="proj-action-btn ghost" target="_blank" rel="noopener noreferrer">
+            <Computer size={11} /> Code
+          </a>
+        </Magnetic>
       </div>
     </motion.div>
   );
@@ -240,7 +285,7 @@ export function ProjectList() {
   const headInView = useInView(headRef, { once: true });
 
   return (
-    <section id="projects" style={{ padding: "8rem 0", background: "#0a0a0a" }}>
+    <section id="projects" style={{ padding: "8rem 0", background: "var(--background)" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
         .projects-wrap {
@@ -262,21 +307,22 @@ export function ProjectList() {
         .projects-eyebrow {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.65rem;
-          font-weight: 300;
+          font-weight: 500;
           letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.3);
+          color: var(--muted-foreground);
+          opacity: 0.7;
           margin-bottom: 0.8rem;
         }
         .projects-heading {
           font-family: 'Bebas Neue', sans-serif;
           font-size: clamp(3rem, 7vw, 6rem);
           letter-spacing: 0.01em;
-          color: #fff;
+          color: var(--foreground);
           line-height: 0.92;
         }
         .projects-heading span {
-          -webkit-text-stroke: 1.5px rgba(255,255,255,0.25);
+          -webkit-text-stroke: 1.5px var(--border);
           color: transparent;
         }
         .projects-sub {
@@ -284,7 +330,7 @@ export function ProjectList() {
           font-size: 0.82rem;
           font-weight: 300;
           line-height: 1.7;
-          color: rgba(255,255,255,0.35);
+          color: var(--muted-foreground);
           max-width: 300px;
           text-align: right;
         }
@@ -294,17 +340,17 @@ export function ProjectList() {
           gap: 0.4rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.65rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.4);
+          color: var(--muted-foreground);
           text-decoration: none;
-          border-bottom: 1px solid rgba(255,255,255,0.15);
+          border-bottom: 1px solid var(--border);
           padding-bottom: 2px;
-          transition: color 0.2s, border-color 0.2s;
+          transition: all 0.2s;
           margin-top: 0.75rem;
         }
-        .view-all-btn:hover { color: #fff; border-color: #fff; }
+        .view-all-btn:hover { color: var(--foreground); border-color: var(--foreground); }
 
         @media (max-width: 640px) {
           .projects-sub, .view-all-btn { text-align: left; }

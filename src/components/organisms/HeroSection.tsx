@@ -3,13 +3,27 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Magnetic from "@/components/Magnetic";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
   const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  const [displayText, setDisplayText] = useState("");
+  const fullText = "Aspiring Software Engineer & Data Scientist";
+
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      setDisplayText(fullText.slice(0, index));
+      index++;
+      if (index > fullText.length) clearInterval(timer);
+    }, 50);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section
@@ -24,25 +38,26 @@ export function HeroSection() {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(ellipse 70% 60% at 60% 40%, rgba(30, 80, 200, 0.15) 0%, transparent 70%),
-            radial-gradient(ellipse 50% 55% at 15% 75%, rgba(0, 180, 120, 0.08) 0%, transparent 65%),
-            #0a0a0a;
+            radial-gradient(ellipse 70% 60% at 60% 40%, rgba(30, 80, 200, 0.12) 0%, transparent 70%),
+            radial-gradient(ellipse 50% 55% at 15% 75%, rgba(0, 180, 120, 0.06) 0%, transparent 65%),
+            var(--background);
         }
 
         .hero-bg-grid {
           position: absolute;
           inset: 0;
           background-image:
-            linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            linear-gradient(var(--foreground) 0.05px, transparent 0.05px),
+            linear-gradient(90deg, var(--foreground) 0.05px, transparent 0.05px);
           background-size: 60px 60px;
+          opacity: 0.1;
         }
 
         .hero-grain {
           position: absolute;
           inset: 0;
           z-index: 5;
-          opacity: 0.04;
+          opacity: 0.03;
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size: 180px 180px;
           pointer-events: none;
@@ -56,10 +71,10 @@ export function HeroSection() {
           bottom: 0;
           width: 3.5rem;
           z-index: 40;
-          background: rgba(255,255,255,0.03);
+          background: var(--nav-bg);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
-          border-left: 1px solid rgba(255,255,255,0.06);
+          border-left: 1px solid var(--nav-border);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -73,14 +88,14 @@ export function HeroSection() {
           font-size: 0.58rem;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.55);
+          color: var(--muted-foreground);
           font-weight: 400;
         }
         .hero-v-badge-dot {
           width: 5px; height: 5px;
           border-radius: 50%;
-          background: #3b82f6;
-          box-shadow: 0 0 10px #3b82f6;
+          background: oklch(0.65 0.2 240);
+          box-shadow: 0 0 10px rgba(59,130,246,0.4);
           flex-shrink: 0;
         }
 
@@ -95,17 +110,17 @@ export function HeroSection() {
           font-weight: 300;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.5);
+          color: var(--muted-foreground);
           z-index: 20;
           display: flex;
           justify-content: center;
           pointer-events: none;
         }
         .hero-role-tag span {
-          background: rgba(255,255,255,0.02);
+          background: var(--nav-bg);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255,255,255,0.07);
+          border: 1px solid var(--nav-border);
           padding: 0.75rem 2rem;
           border-radius: 999px;
         }
@@ -137,17 +152,12 @@ export function HeroSection() {
           display: block;
           font-family: 'Bebas Neue', sans-serif;
           font-size: clamp(72px, 14vw, 170px);
-          background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
+          background: linear-gradient(135deg, var(--foreground) 0%, oklch(0.65 0.2 240) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           color: transparent;
           letter-spacing: -0.01em;
-        }
-        .hero-name-line.outlined {
-          background: none;
-          -webkit-text-fill-color: initial;
-          -webkit-text-stroke: 1.5px rgba(255,255,255,0.3);
-          color: transparent;
+          filter: drop-shadow(0 0 25px rgba(59,130,246,0.15));
         }
 
         /* Bottom meta strip */
@@ -167,7 +177,7 @@ export function HeroSection() {
           font-weight: 300;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.38);
+          color: var(--muted-foreground);
         }
 
         /* CTA button */
@@ -177,11 +187,11 @@ export function HeroSection() {
           gap: 0.5rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.7rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: #0a0a0a;
-          background: #fff;
+          color: var(--background);
+          background: var(--foreground);
           border: none;
           padding: 0.65rem 1.4rem;
           border-radius: 999px;
@@ -189,8 +199,9 @@ export function HeroSection() {
           text-decoration: none;
           transition: opacity 0.2s, transform 0.2s;
           white-space: nowrap;
+          box-shadow: var(--card-shadow);
         }
-        .hero-cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .hero-cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* Scroll indicator line */
         .hero-scroll-line {
@@ -200,7 +211,7 @@ export function HeroSection() {
           transform: translateX(-50%);
           width: 1px;
           height: 52px;
-          background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.22));
+          background: linear-gradient(to bottom, transparent, var(--border));
           z-index: 30;
         }
 
@@ -241,9 +252,16 @@ export function HeroSection() {
         style={{ top: "33%" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
       >
-        <span>Aspiring Software Engineer &amp; Data Scientist</span>
+        <span>
+          {displayText}
+          <motion.span
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            className="inline-block w-px h-[1em] bg-current ml-1 align-middle"
+          />
+        </span>
       </motion.div>
 
       {/* Abstract SVG shape */}
@@ -364,7 +382,7 @@ export function HeroSection() {
           ARPAN
         </motion.span>
         <motion.span
-          className="hero-name-line outlined"
+          className="hero-name-line"
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -382,10 +400,12 @@ export function HeroSection() {
       >
         <span className="hero-meta-item">Parul University &amp; IIT Madras</span>
         <span className="hero-meta-item">Specializing in AI / ML &amp; Cloud</span>
-        <Link href="/#contact" className="hero-cta-btn">
-          Let&apos;s Work Together
-          <ArrowUpRight size={13} />
-        </Link>
+        <Magnetic>
+          <Link href="/#contact" className="hero-cta-btn">
+            Let&apos;s Work Together
+            <ArrowUpRight size={13} />
+          </Link>
+        </Magnetic>
       </motion.div>
 
       {/* Scroll indicator line */}

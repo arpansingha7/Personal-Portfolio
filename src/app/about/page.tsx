@@ -68,9 +68,9 @@ const LANGUAGES_SPOKEN = [
 
 export default function AboutPage() {
   return (
-    <div style={{ minHeight: "100vh", background: "#0a0a0a", position: "relative" }}>
+    <div style={{ minHeight: "100vh", background: "var(--background)", position: "relative" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap');
 
         .about-wrap {
           max-width: 1100px;
@@ -81,17 +81,17 @@ export default function AboutPage() {
         .about-bg-glow {
           position: fixed; inset: 0; pointer-events: none; z-index: 0;
           background:
-            radial-gradient(ellipse 55% 45% at 75% 25%, rgba(59,130,246,0.06) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 40% at 25% 75%, rgba(52,211,153,0.05) 0%, transparent 70%);
+            radial-gradient(ellipse 55% 45% at 75% 25%, rgba(59,130,246,0.05) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 40% at 25% 75%, rgba(52,211,153,0.04) 0%, transparent 70%);
         }
 
         .section-eyebrow {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.6rem;
-          font-weight: 300;
+          font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: var(--muted-foreground);
           margin-bottom: 0.6rem;
         }
         .section-heading {
@@ -99,7 +99,7 @@ export default function AboutPage() {
           font-size: clamp(2.4rem, 4.5vw, 3.8rem);
           letter-spacing: 0.01em;
           line-height: 0.95;
-          background: linear-gradient(to right, rgba(255,255,255,0.92), rgba(255,255,255,0.35));
+          background: linear-gradient(to right, var(--foreground), var(--muted-foreground));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           margin-bottom: 2rem;
@@ -107,58 +107,59 @@ export default function AboutPage() {
 
         .glass-card {
           border-radius: 18px;
-          border: 1px solid rgba(255,255,255,0.07);
-          background: rgba(255,255,255,0.025);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           backdrop-filter: blur(16px);
-          transition: border-color 0.3s, background 0.3s;
+          transition: all 0.3s ease;
           overflow: hidden;
+          box-shadow: var(--card-shadow);
         }
         .glass-card:hover {
-          border-color: rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.04);
+          border-color: var(--muted-foreground);
+          background: var(--accent);
         }
 
         .edu-card {
           border-radius: 14px;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.02);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           padding: 1.4rem 1.6rem;
           transition: all 0.25s ease;
         }
         .edu-card:hover {
-          border-color: rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.04);
+          border-color: var(--muted-foreground);
+          background: var(--accent);
         }
 
         .skill-group {
           border-radius: 14px;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.02);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           padding: 1.25rem;
           transition: all 0.25s ease;
         }
         .skill-group:hover {
-          border-color: rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.04);
+          border-color: var(--muted-foreground);
+          background: var(--accent);
         }
 
         .skill-tag {
           display: inline-block;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.65rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.1em;
-          color: rgba(255,255,255,0.55);
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.08);
+          color: var(--muted-foreground);
+          background: var(--accent);
+          border: 1px solid var(--border);
           border-radius: 999px;
           padding: 0.25rem 0.7rem;
           transition: all 0.2s;
         }
         .skill-tag:hover {
-          background: rgba(255,255,255,0.09);
-          color: rgba(255,255,255,0.85);
-          border-color: rgba(255,255,255,0.18);
+          background: var(--border);
+          color: var(--foreground);
+          border-color: var(--muted-foreground);
         }
 
         @media (max-width: 768px) {
@@ -191,21 +192,15 @@ export default function AboutPage() {
                   letterSpacing: "0.01em",
                   lineHeight: 0.9,
                   marginBottom: "1.5rem",
+                  filter: "drop-shadow(0 0 20px rgba(59,130,246,0.15))",
                 }}
               >
                 <span style={{
-                  background: "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.55) 100%)",
+                  background: "linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}>
-                  ARPAN<br />
-                </span>
-                <span style={{
-                  WebkitTextStroke: "1.5px rgba(255,255,255,0.25)",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                }}>
-                  SINGHA
+                  ARPAN<br />SINGHA
                 </span>
               </h1>
               <p style={{
@@ -213,7 +208,7 @@ export default function AboutPage() {
                 fontSize: "1rem",
                 fontWeight: 300,
                 lineHeight: 1.8,
-                color: "rgba(255,255,255,0.4)",
+                color: "var(--muted-foreground)",
                 maxWidth: "560px",
                 marginBottom: "2rem",
               }}>
@@ -227,10 +222,11 @@ export default function AboutPage() {
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "0.5rem",
                     fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem",
-                    fontWeight: 400, letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#0a0a0a", background: "#fff",
+                    fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "var(--background)", background: "var(--foreground)",
                     padding: "0.7rem 1.4rem", borderRadius: "999px",
                     textDecoration: "none", transition: "opacity 0.2s",
+                    boxShadow: "var(--card-shadow)",
                   }}
                 >
                   <Briefcase size={12} />
@@ -241,9 +237,9 @@ export default function AboutPage() {
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "0.5rem",
                     fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem",
-                    fontWeight: 400, letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.6)",
-                    border: "1px solid rgba(255,255,255,0.14)",
+                    fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "var(--muted-foreground)",
+                    border: "1px solid var(--border)",
                     padding: "0.7rem 1.4rem", borderRadius: "999px",
                     textDecoration: "none", transition: "all 0.2s",
                   }}

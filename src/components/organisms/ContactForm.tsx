@@ -44,10 +44,10 @@ export function ContactForm() {
   return (
     <section
       id="contact"
-      style={{ background: "#0a0a0a", padding: "8rem 0" }}
+      style={{ background: "var(--background)", padding: "8rem 0" }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
 
         .contact-wrap {
           max-width: 1100px;
@@ -65,10 +65,10 @@ export function ContactForm() {
         .contact-eyebrow {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.62rem;
-          font-weight: 300;
+          font-weight: 400;
           letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.28);
+          color: var(--muted-foreground);
           margin-bottom: 0.75rem;
         }
 
@@ -77,7 +77,7 @@ export function ContactForm() {
           font-size: clamp(2.8rem, 5.5vw, 4.5rem);
           letter-spacing: 0.02em;
           line-height: 0.95;
-          background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.35));
+          background: linear-gradient(to right, var(--foreground), var(--muted-foreground));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           margin-bottom: 1.25rem;
@@ -88,7 +88,7 @@ export function ContactForm() {
           font-size: 0.85rem;
           font-weight: 300;
           line-height: 1.75;
-          color: rgba(255,255,255,0.32);
+          color: var(--muted-foreground);
           max-width: 340px;
           margin-bottom: 2.5rem;
         }
@@ -100,22 +100,22 @@ export function ContactForm() {
           gap: 1rem;
           padding: 1rem 1.25rem;
           border-radius: 14px;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.02);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           text-decoration: none;
           transition: all 0.25s ease;
           margin-bottom: 0.65rem;
         }
         .contact-info-card:hover {
-          border-color: rgba(255,255,255,0.14);
-          background: rgba(255,255,255,0.04);
+          border-color: var(--muted-foreground);
+          background: var(--accent);
           transform: translateX(4px);
         }
         .contact-info-icon {
           width: 38px;
           height: 38px;
           border-radius: 10px;
-          border: 1px solid rgba(255,255,255,0.07);
+          border: 1px solid var(--border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -123,46 +123,47 @@ export function ContactForm() {
           transition: all 0.25s;
         }
         .contact-info-card:hover .contact-info-icon {
-          border-color: rgba(255,255,255,0.18);
+          border-color: var(--muted-foreground);
         }
         .contact-info-label {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.58rem;
-          font-weight: 300;
+          font-weight: 500;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: var(--muted-foreground);
           display: block;
         }
         .contact-info-value {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.82rem;
-          color: rgba(255,255,255,0.6);
+          color: var(--muted-foreground);
           margin-top: 1px;
           display: block;
           transition: color 0.2s;
         }
-        .contact-info-card:hover .contact-info-value { color: rgba(255,255,255,0.88); }
+        .contact-info-card:hover .contact-info-value { color: var(--foreground); }
 
         /* Form card */
         .contact-form-card {
           position: relative;
           border-radius: 20px;
-          border: 1px solid rgba(255,255,255,0.07);
-          background: rgba(255,255,255,0.02);
+          border: 1px solid var(--border);
+          background: var(--stat-card-bg);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           padding: 2.25rem;
+          box-shadow: var(--card-shadow);
         }
 
         .form-label {
           display: block;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.58rem;
-          font-weight: 300;
+          font-weight: 500;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.28);
+          color: var(--muted-foreground);
           margin-bottom: 0.4rem;
         }
 
@@ -206,9 +207,9 @@ export function ContactForm() {
                 >
                   <div
                     className="contact-info-icon"
-                    style={{ background: `${accent}18` }}
+                    style={{ background: `${accent}12` }}
                   >
-                    <Icon size={14} style={{ color: accent, opacity: 0.85 }} />
+                    <Icon size={14} style={{ color: accent, opacity: 0.9 }} />
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <span className="contact-info-label">{label}</span>
@@ -216,7 +217,7 @@ export function ContactForm() {
                       {value}
                     </span>
                   </div>
-                  <ArrowUpRight size={12} style={{ color: "rgba(255,255,255,0.2)", flexShrink: 0 }} />
+                  <ArrowUpRight size={12} style={{ color: "var(--border)", flexShrink: 0 }} />
                 </a>
               ))}
             </div>
@@ -231,7 +232,7 @@ export function ContactForm() {
           >
             <div className="contact-form-card">
               {/* Subtle top glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-full" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent rounded-full" />
 
               <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -241,7 +242,7 @@ export function ContactForm() {
                       placeholder="Arpan Singha"
                       onFocus={() => setIsFocused("name")}
                       onBlur={() => setIsFocused(null)}
-                      className="h-11 bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/18 focus-visible:ring-0 focus-visible:border-white/28 transition-colors"
+                      className="h-11 bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors"
                       required
                     />
                   </div>
@@ -252,7 +253,7 @@ export function ContactForm() {
                       placeholder="you@example.com"
                       onFocus={() => setIsFocused("email")}
                       onBlur={() => setIsFocused(null)}
-                      className="h-11 bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/18 focus-visible:ring-0 focus-visible:border-white/28 transition-colors"
+                      className="h-11 bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors"
                       required
                     />
                   </div>
@@ -262,7 +263,7 @@ export function ContactForm() {
                   <label className="form-label">Subject</label>
                   <Input
                     placeholder="Project Collaboration"
-                    className="h-11 bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/18 focus-visible:ring-0 focus-visible:border-white/28 transition-colors"
+                    className="h-11 bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors"
                     required
                   />
                 </div>
@@ -271,18 +272,18 @@ export function ContactForm() {
                   <label className="form-label">Message</label>
                   <Textarea
                     placeholder="Tell me about your project or idea..."
-                    className="min-h-[140px] bg-white/[0.03] border-white/[0.08] rounded-xl text-white/80 placeholder:text-white/18 focus-visible:ring-0 focus-visible:border-white/28 transition-colors resize-none"
+                    className="min-h-[140px] bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors resize-none"
                     required
                   />
                 </div>
 
                 <Button
-                  className="w-full h-12 rounded-xl font-light tracking-widest text-xs uppercase transition-all active:scale-[0.98]"
+                  className="w-full h-12 rounded-xl font-medium tracking-widest text-xs uppercase transition-all active:scale-[0.98]"
                   style={{
-                    background: isSubmitted ? "rgba(52,211,153,0.15)" : "#fff",
-                    color: isSubmitted ? "#34d399" : "#0a0a0a",
+                    background: isSubmitted ? "rgba(52,211,153,0.15)" : "var(--foreground)",
+                    color: isSubmitted ? "#10b981" : "var(--background)",
                     border: isSubmitted ? "1px solid rgba(52,211,153,0.3)" : "none",
-                    boxShadow: isSubmitted ? "none" : "0 0 28px rgba(255,255,255,0.07)",
+                    boxShadow: isSubmitted ? "none" : "var(--card-shadow)",
                   }}
                   disabled={isSubmitted}
                 >

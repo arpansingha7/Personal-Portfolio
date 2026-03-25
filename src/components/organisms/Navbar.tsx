@@ -45,10 +45,10 @@ export function Navbar() {
         }
         .nav-inner.scrolled {
           padding: 1rem 2.5rem;
-          background: rgba(10,10,10,0.75);
+          background: var(--nav-bg);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
-          border-bottom: 1px solid rgba(255,255,255,0.06);
+          border-bottom: 1px solid var(--nav-border);
         }
 
         /* Logo */
@@ -56,7 +56,7 @@ export function Navbar() {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 1.5rem;
           letter-spacing: 0.1em;
-          color: #fff;
+          color: var(--foreground);
           text-decoration: none;
           display: flex;
           align-items: center;
@@ -69,10 +69,10 @@ export function Navbar() {
           width: 7px;
           height: 7px;
           border-radius: 50%;
-          background: #3b82f6;
+          background: oklch(0.65 0.2 240);
           margin-left: 2px;
           margin-bottom: 6px;
-          box-shadow: 0 0 8px rgba(59,130,246,0.7);
+          box-shadow: 0 0 8px rgba(59,130,246,0.3);
         }
 
         /* Center links */
@@ -85,10 +85,10 @@ export function Navbar() {
         .nav-link-item a {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
-          font-weight: 300;
+          font-weight: 400;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.5);
+          color: var(--muted-foreground);
           text-decoration: none;
           padding: 0.45rem 0.85rem;
           border-radius: 999px;
@@ -96,8 +96,8 @@ export function Navbar() {
           transition: color 0.2s, background 0.2s;
         }
         .nav-link-item a:hover {
-          color: #fff;
-          background: rgba(255,255,255,0.07);
+          color: var(--foreground);
+          background: var(--accent);
         }
 
         /* Right cluster */
@@ -114,11 +114,11 @@ export function Navbar() {
           gap: 0.45rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.7rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #0a0a0a;
-          background: #fff;
+          color: var(--primary-foreground);
+          background: var(--primary);
           border: none;
           padding: 0.6rem 1.2rem;
           border-radius: 999px;
@@ -126,8 +126,9 @@ export function Navbar() {
           text-decoration: none;
           transition: opacity 0.2s, transform 0.2s;
           white-space: nowrap;
+          box-shadow: var(--card-shadow);
         }
-        .hire-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .hire-btn:hover { opacity: 0.9; transform: translateY(-1px); }
         .hire-btn:active { transform: scale(0.97); }
 
         .ping-dot {
@@ -156,26 +157,30 @@ export function Navbar() {
           75%, 100% { transform: scale(2); opacity: 0; }
         }
 
-        /* Theme toggle override to match */
+        /* Theme toggle override */
         .theme-wrap button {
-          color: rgba(255,255,255,0.5) !important;
+          color: var(--muted-foreground) !important;
           background: transparent !important;
-          border: none !important;
-          transition: color 0.2s !important;
+          border: 1px solid var(--border) !important;
+          transition: all 0.2s !important;
         }
-        .theme-wrap button:hover { color: #fff !important; }
+        .theme-wrap button:hover {
+          color: var(--foreground) !important;
+          border-color: var(--muted-foreground) !important;
+          background: var(--accent) !important;
+        }
 
         /* Mobile menu button */
         .mob-toggle {
           display: none;
           background: none;
           border: none;
-          color: rgba(255,255,255,0.6);
+          color: var(--muted-foreground);
           cursor: pointer;
           padding: 0.25rem;
           transition: color 0.2s;
         }
-        .mob-toggle:hover { color: #fff; }
+        .mob-toggle:hover { color: var(--foreground); }
 
         @media (max-width: 767px) {
           .nav-links { display: none; }
@@ -188,42 +193,72 @@ export function Navbar() {
         /* Mobile drawer */
         .mob-drawer {
           position: fixed;
-          inset: 0;
-          z-index: 90;
-          background: #0a0a0a;
+          top: 0;
+          left: 0;
+          width: 85%;
+          height: 100vh;
+          background: var(--background);
+          padding: 6rem 2rem 2rem;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 2rem;
+          gap: 1.5rem;
+          z-index: 1000;
+          box-shadow: 20px 0 60px rgba(0,0,0,0.1);
+          border-right: 1px solid var(--border);
         }
-        .mob-drawer a {
+        .mob-nav-link {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 3.5rem;
-          letter-spacing: 0.06em;
-          color: rgba(255,255,255,0.85);
+          font-size: 3rem;
+          color: var(--muted-foreground);
           text-decoration: none;
           transition: color 0.2s;
         }
-        .mob-drawer a:hover { color: #3b82f6; }
+        .mob-nav-link:hover, .mob-nav-link.active { color: var(--foreground); }
+
+        .mob-hire-btn {
+          margin-top: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: var(--foreground);
+          color: var(--background);
+          padding: 1rem;
+          border-radius: 12px;
+          text-decoration: none;
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 500;
+        }
+
+        .mob-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.4);
+          backdrop-filter: blur(4px);
+          z-index: 999;
+        }
+
+        [data-theme='light'] .mob-overlay {
+          background: rgba(0,0,0,0.15);
+        }
         .mob-close {
           position: absolute;
           top: 1.8rem;
           right: 2.2rem;
           background: none;
           border: none;
-          color: rgba(255,255,255,0.5);
+          color: var(--muted-foreground);
           cursor: pointer;
           transition: color 0.2s;
         }
-        .mob-close:hover { color: #fff; }
+        .mob-close:hover { color: var(--foreground); }
 
         /* Number labels on mobile links */
         .mob-num {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.65rem;
           letter-spacing: 0.2em;
-          color: rgba(255,255,255,0.25);
+          color: var(--muted-foreground);
           display: block;
           text-align: center;
           margin-bottom: -1rem;
