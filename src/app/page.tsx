@@ -11,49 +11,84 @@ export default function Home() {
       <Navbar />
 
       <main>
-        {/* Hero takes full viewport — no gap needed here */}
+        {/* Hero — full viewport */}
         <HeroSection />
 
-        {/* Below-hero sections: separated by a consistent 6rem gap on desktop */}
-        <div className="flex flex-col gap-0">
-          <ProjectList />
+        {/* Sections below hero */}
+        <ProjectList />
 
-          {/* Divider */}
-          <div className="w-full max-w-7xl mx-auto px-6">
-            <div className="border-t border-white/[0.05]" />
-          </div>
-
-          <LiveActivity />
-
-          {/* Divider */}
-          <div className="w-full max-w-7xl mx-auto px-6">
-            <div className="border-t border-white/[0.05]" />
-          </div>
-
-          <ContactForm />
+        {/* Divider */}
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }} />
         </div>
+
+        <LiveActivity />
+
+        {/* Divider */}
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }} />
+        </div>
+
+        <ContactForm />
       </main>
 
       <Chatbot />
 
-      <footer className="border-t border-white/[0.06] mt-24 py-12">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/20 text-xs tracking-widest uppercase font-light">
+      <footer
+        style={{
+          borderTop: "1px solid rgba(255,255,255,0.05)",
+          padding: "2.5rem 0",
+          background: "#0a0a0a",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 2.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}
+        >
+          <p
+            style={{
+              color: "rgba(255,255,255,0.2)",
+              fontSize: "0.65rem",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              fontWeight: 300,
+            }}
+          >
             © 2026 Arpan Singha. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <a href="https://github.com/arpansingha7" target="_blank" rel="noreferrer"
-              className="text-white/20 text-xs tracking-widest uppercase font-light hover:text-white/60 transition-colors">
-              GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/-arpansingha-" target="_blank" rel="noreferrer"
-              className="text-white/20 text-xs tracking-widest uppercase font-light hover:text-white/60 transition-colors">
-              LinkedIn
-            </a>
-            <a href="/#contact"
-              className="text-white/20 text-xs tracking-widest uppercase font-light hover:text-white/60 transition-colors">
-              Contact
-            </a>
+          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+            {[
+              { label: "GitHub", href: "https://github.com/arpansingha7" },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/-arpansingha-" },
+              { label: "Contact", href: "/#contact" },
+            ].map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                style={{
+                  color: "rgba(255,255,255,0.2)",
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  fontWeight: 300,
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                className="hover:text-white/60"
+              >
+                {label}
+              </a>
+            ))}
           </div>
         </div>
       </footer>

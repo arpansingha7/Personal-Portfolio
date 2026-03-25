@@ -248,6 +248,9 @@ export function ProjectList() {
           margin: 0 auto;
           padding: 0 2.5rem;
         }
+        @media (max-width: 640px) {
+          .projects-wrap { padding: 0 1.5rem; }
+        }
         .projects-header {
           display: flex;
           align-items: flex-end;

@@ -127,18 +127,19 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   /* Premium Custom Scrollbar */
-  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.07);
     border-radius: 10px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.16); }
 
   /* Selection color */
   ::selection {

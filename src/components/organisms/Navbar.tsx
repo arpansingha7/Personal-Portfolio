@@ -272,7 +272,7 @@ export function Navbar() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.45, duration: 0.4 }}
             >
-              <Link href="/#contact" className="hire-btn">
+              <Link href="/hire" className="hire-btn">
                 <span className="ping-dot">
                   <span className="ping-dot-ring" />
                   <span className="ping-dot-core" />
@@ -321,7 +321,7 @@ export function Navbar() {
           ))}
 
           <Link
-            href="/#contact"
+            href="/hire"
             className="hire-btn"
             onClick={() => setMobileOpen(false)}
             style={{ marginTop: "1rem" }}
