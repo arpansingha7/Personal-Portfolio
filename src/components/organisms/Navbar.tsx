@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/organisms/ThemeToggle";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
@@ -184,7 +184,7 @@ export function Navbar() {
 
         @media (max-width: 767px) {
           .nav-links { display: none; }
-          .hire-btn { display: none; }
+          .nav-inner .hire-btn { display: none; }
           .mob-toggle { display: flex; }
           .nav-inner { padding: 1.2rem 1.5rem; }
           .nav-inner.scrolled { padding: 0.8rem 1.5rem; }
@@ -194,8 +194,8 @@ export function Navbar() {
         .mob-drawer {
           position: fixed;
           top: 0;
-          left: 0;
-          width: 85%;
+          right: 0;
+          width: 280px;
           height: 100vh;
           background: var(--background);
           padding: 6rem 2rem 2rem;
@@ -203,8 +203,8 @@ export function Navbar() {
           flex-direction: column;
           gap: 1.5rem;
           z-index: 1000;
-          box-shadow: 20px 0 60px rgba(0,0,0,0.1);
-          border-right: 1px solid var(--border);
+          box-shadow: -20px 0 60px rgba(0,0,0,0.15);
+          border-left: 1px solid var(--border);
         }
         .mob-nav-link {
           font-family: 'Bebas Neue', sans-serif;
@@ -330,46 +330,61 @@ export function Navbar() {
       </motion.header>
 
       {/* Mobile full-screen drawer */}
-      {mobileOpen && (
-        <motion.div
-          className="mob-drawer"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <button
-            className="mob-close"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-
-          {NAV_LINKS.map((link, i) => (
-            <div key={link.href} style={{ textAlign: "center" }}>
-              <span className="mob-num">0{i + 1}</span>
-              <Link href={link.href} onClick={() => setMobileOpen(false)}>
-                {link.label}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              className="mob-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              className="mob-drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <button
+                className="mob-close"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
+    
+              {NAV_LINKS.map((link, i) => (
+                <div key={link.href} style={{ textAlign: "left" }}>
+                  <span className="mob-num" style={{ textAlign: "left", marginBottom: "0.25rem" }}>0{i + 1}</span>
+                  <Link 
+                    href={link.href} 
+                    className="mob-nav-link"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+    
+              <Link
+                href="/hire"
+                className="hire-btn"
+                onClick={() => setMobileOpen(false)}
+                style={{ marginTop: "1rem" }}
+              >
+                <span className="ping-dot">
+                  <span className="ping-dot-ring" />
+                  <span className="ping-dot-core" />
+                </span>
+                Hire Me
+                <ArrowUpRight size={11} strokeWidth={2} />
               </Link>
-            </div>
-          ))}
-
-          <Link
-            href="/hire"
-            className="hire-btn"
-            onClick={() => setMobileOpen(false)}
-            style={{ marginTop: "1rem" }}
-          >
-            <span className="ping-dot">
-              <span className="ping-dot-ring" />
-              <span className="ping-dot-core" />
-            </span>
-            Hire Me
-            <ArrowUpRight size={11} strokeWidth={2} />
-          </Link>
-        </motion.div>
-      )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

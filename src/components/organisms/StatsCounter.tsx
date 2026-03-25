@@ -117,7 +117,7 @@ export function StatsCounter() {
         pointerEvents: "none",
       }} />
 
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2.5rem" }}>
+      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(1rem, 5vw, 2.5rem)" }}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -143,7 +143,7 @@ export function StatsCounter() {
         {/* Stats grid */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           gap: "1rem",
         }}>
           {STATS.map((stat, i) => (

@@ -50,6 +50,8 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Disable tilt on touch devices/small screens
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
@@ -95,6 +97,7 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
           border-top: 1px solid var(--border);
           cursor: pointer;
           transition: background 0.3s;
+          user-select: none;
         }
         .project-row:last-child { border-bottom: 1px solid var(--border); }
 
@@ -232,13 +235,24 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
 
         @media (max-width: 640px) {
           .project-row {
-            grid-template-columns: 2.5rem 1fr;
-            grid-template-rows: auto auto;
+            grid-template-columns: 2.2rem 1fr;
+            gap: 1.25rem;
+            padding: 1.75rem 0;
           }
           .proj-actions {
             grid-column: 2;
             flex-direction: row;
-            align-items: center;
+            justify-content: flex-start;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+          }
+          .proj-action-btn {
+            padding: 0.45rem 0.85rem;
+            font-size: 0.6rem;
+          }
+          .proj-desc {
+            font-size: 0.78rem;
+            line-height: 1.6;
           }
         }
       `}</style>
@@ -354,7 +368,13 @@ export function ProjectList() {
 
         @media (max-width: 640px) {
           .projects-sub, .view-all-btn { text-align: left; }
-          .projects-header { flex-direction: column; align-items: flex-start; }
+          .projects-header { 
+            flex-direction: column; 
+            align-items: flex-start; 
+            margin-bottom: 2.5rem;
+            gap: 1.25rem;
+          }
+          .projects-sub { max-width: 100%; text-align: left; }
         }
       `}</style>
 

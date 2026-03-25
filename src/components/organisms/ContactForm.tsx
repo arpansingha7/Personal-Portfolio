@@ -52,7 +52,7 @@ export function ContactForm() {
         .contact-wrap {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 0 2.5rem;
+          padding: 0 clamp(1.25rem, 5vw, 2.5rem);
         }
 
         .contact-grid {
@@ -152,7 +152,7 @@ export function ContactForm() {
           background: var(--stat-card-bg);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          padding: 2.25rem;
+          padding: clamp(1.5rem, 5vw, 2.25rem);
           box-shadow: var(--card-shadow);
         }
 
@@ -175,7 +175,10 @@ export function ContactForm() {
           .contact-sub { max-width: 100%; }
         }
         @media (max-width: 640px) {
-          .contact-wrap { padding: 0 1.5rem; }
+          .contact-wrap { padding: 0 1.25rem; }
+          .contact-heading { margin-bottom: 0.75rem; }
+          .contact-sub { margin-bottom: 1.5rem; font-size: 0.8rem; }
+          .contact-grid { gap: 2.5rem; }
         }
       `}</style>
 
@@ -196,7 +199,11 @@ export function ContactForm() {
               I&apos;m ready to collaborate and build experiences that matter.
             </p>
 
-            <div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+              gap: "1rem",
+            }}>
               {CONTACT_ITEMS.map(({ icon: Icon, label, value, href, accent }) => (
                 <a
                   key={label}

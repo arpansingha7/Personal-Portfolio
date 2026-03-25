@@ -106,9 +106,9 @@ export function HeroSection() {
           right: 3.5rem;
           text-align: center;
           font-family: 'DM Sans', sans-serif;
-          font-size: clamp(0.65rem, 1.5vw, 0.82rem);
+          font-size: clamp(0.75rem, 3vw, 0.82rem);
           font-weight: 300;
-          letter-spacing: 0.28em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--muted-foreground);
           z-index: 20;
@@ -121,7 +121,7 @@ export function HeroSection() {
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border: 1px solid var(--nav-border);
-          padding: 0.75rem 2rem;
+          padding: 0.6rem 1.4rem;
           border-radius: 999px;
         }
 
@@ -140,7 +140,7 @@ export function HeroSection() {
         /* Big name — anchored to bottom */
         .hero-name-block {
           position: absolute;
-          bottom: 5.5rem;
+          bottom: clamp(4.5rem, 10vh, 5.5rem);
           left: 0;
           right: 3.5rem;
           padding: 0 2.5rem;
@@ -151,7 +151,7 @@ export function HeroSection() {
         .hero-name-line {
           display: block;
           font-family: 'Bebas Neue', sans-serif;
-          font-size: clamp(72px, 14vw, 170px);
+          font-size: clamp(56px, 14vw, 170px);
           background: linear-gradient(135deg, var(--foreground) 0%, oklch(0.65 0.2 240) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -173,9 +173,9 @@ export function HeroSection() {
         }
         .hero-meta-item {
           font-family: 'DM Sans', sans-serif;
-          font-size: clamp(0.52rem, 0.85vw, 0.68rem);
+          font-size: clamp(0.6rem, 2vw, 0.68rem);
           font-weight: 300;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           color: var(--muted-foreground);
         }
@@ -215,23 +215,25 @@ export function HeroSection() {
           z-index: 30;
         }
 
-        @media (max-width: 768px) {
-          .hero-v-badge { display: none; }
-          .hero-name-block {
-            right: 0;
-            padding: 0 1.5rem;
-            bottom: 6rem;
+          @media (max-width: 768px) {
+            .hero-v-badge { display: none; }
+            .hero-name-block {
+              right: 0;
+              padding: 0 1.5rem;
+              bottom: 6.5rem;
+            }
+            .hero-meta-strip {
+              left: 1.5rem;
+              right: 1.5rem;
+              bottom: 1.5rem;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              gap: 0.6rem;
+            }
+            .hero-role-tag { right: 0; top: 28% !important; }
+            .hero-shape-wrap { top: 38%; width: 280px; }
           }
-          .hero-meta-strip {
-            left: 1.5rem;
-            right: 1.5rem;
-            bottom: 2rem;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.8rem;
-          }
-          .hero-role-tag { right: 0; }
-        }
       `}</style>
 
       {/* Backgrounds */}
