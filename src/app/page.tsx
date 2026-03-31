@@ -3,6 +3,8 @@ import { HeroSection } from "@/components/organisms/HeroSection";
 import { StatsCounter } from "@/components/organisms/StatsCounter";
 import { ProjectList } from "@/components/organisms/ProjectList";
 import { LiveActivity } from "@/components/organisms/LiveActivity";
+import { AboutSection } from "@/components/organisms/AboutSection";
+import { HireSection } from "@/components/organisms/HireSection";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { Chatbot } from "@/components/organisms/Chatbot";
 import { BackToTop } from "@/components/organisms/BackToTop";
@@ -25,7 +27,21 @@ export default function Home() {
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
 
+        <AboutSection />
+
+        {/* Divider */}
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+          <div style={{ borderTop: "1px solid var(--border)" }} />
+        </div>
+
         <ProjectList />
+
+        {/* Divider */}
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+          <div style={{ borderTop: "1px solid var(--border)" }} />
+        </div>
+
+        <HireSection />
 
         {/* Divider */}
         <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>

@@ -35,8 +35,16 @@ export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFocused, setIsFocused] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const subject = formData.get("subject") as string || "Project Collaboration";
+    const bodyText = formData.get("message") as string;
+    
+    const finalBody = `Hi Arpan,\n\n${bodyText}\n\nBest regards,\n${name}`;
+    window.location.href = `mailto:arpansingha16703@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
+    
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3500);
   };
@@ -246,6 +254,7 @@ export function ContactForm() {
                   <div>
                     <label className="form-label">Name</label>
                     <Input
+                      name="name"
                       placeholder="Arpan Singha"
                       onFocus={() => setIsFocused("name")}
                       onBlur={() => setIsFocused(null)}
@@ -257,6 +266,7 @@ export function ContactForm() {
                     <label className="form-label">Email</label>
                     <Input
                       type="email"
+                      name="email"
                       placeholder="you@example.com"
                       onFocus={() => setIsFocused("email")}
                       onBlur={() => setIsFocused(null)}
@@ -269,6 +279,7 @@ export function ContactForm() {
                 <div>
                   <label className="form-label">Subject</label>
                   <Input
+                    name="subject"
                     placeholder="Project Collaboration"
                     className="h-11 bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors"
                     required
@@ -278,6 +289,7 @@ export function ContactForm() {
                 <div>
                   <label className="form-label">Message</label>
                   <Textarea
+                    name="message"
                     placeholder="Tell me about your project or idea..."
                     className="min-h-[140px] bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors resize-none"
                     required

@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Navbar } from "@/components/organisms/Navbar";
-import { Chatbot } from "@/components/organisms/Chatbot";
 import Link from "next/link";
 import {
   GraduationCap,
@@ -25,7 +23,7 @@ const EDUCATION = [
   {
     school: "Parul University, Vadodara",
     degree: "B.Tech — Computer Science Engineering",
-    period: "2022 – Present",
+    period: "2023 – Present",
     note: "Core CS: algorithms, distributed systems, AI, networking, software engineering",
     accent: "#3b82f6",
   },
@@ -66,9 +64,9 @@ const LANGUAGES_SPOKEN = [
   { lang: "Hindi", level: "Full Professional", pct: 90, color: "#a78bfa" },
 ];
 
-export default function AboutPage() {
+export function AboutSection() {
   return (
-    <div style={{ minHeight: "100vh", background: "var(--background)", position: "relative" }}>
+    <section id="about" style={{ position: "relative", background: "var(--background)" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap');
 
@@ -172,8 +170,6 @@ export default function AboutPage() {
       <div className="about-bg-glow" />
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <Navbar />
-
         <main style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
           <div className="about-wrap">
 
@@ -185,24 +181,7 @@ export default function AboutPage() {
               style={{ marginBottom: "5rem" }}
             >
               <p className="section-eyebrow">Who I am</p>
-              <h1
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                  letterSpacing: "0.01em",
-                  lineHeight: 0.9,
-                  marginBottom: "1.5rem",
-                  filter: "drop-shadow(0 0 20px rgba(59,130,246,0.15))",
-                }}
-              >
-                <span style={{
-                  background: "linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}>
-                  ARPAN<br />SINGHA
-                </span>
-              </h1>
+              <h2 className="section-heading-about">About Me</h2>
               <p style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "1rem",
@@ -218,7 +197,7 @@ export default function AboutPage() {
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                 <Link
-                  href="/hire"
+                  href="#hire"
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "0.5rem",
                     fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem",
@@ -538,8 +517,6 @@ export default function AboutPage() {
           </div>
         </main>
       </div>
-
-      <Chatbot />
-    </div>
+    </section>
   );
 }

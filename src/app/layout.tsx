@@ -10,11 +10,26 @@ const ubuntuFont = Ubuntu({
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/organisms/ScrollProgress";
 import { CursorGlow } from "@/components/organisms/CursorGlow";
-import TransitionProvider from "@/components/TransitionProvider";
+import { Starfield } from "@/components/organisms/Starfield";
 
 export const metadata: Metadata = {
-  title: "Arpan's Portfolio",
-  description: "Personal portfolio built with Next.js, Tailwind, and Shadcn",
+  title: "Arpan Singha | Software Engineer & Data Scientist",
+  description: "Dual-degree student at IIT Madras & Parul University. Specializing in AI, data pipelines, and scalable web applications.",
+  keywords: ["Arpan Singha", "Software Engineer", "Data Scientist", "IIT Madras", "Portfolio"],
+  authors: [{ name: "Arpan Singha" }],
+  openGraph: {
+    title: "Arpan Singha | SWE & Data Scientist",
+    description: "CS & Data Science student building elegant software at the intersection of AI, cloud, and the web.",
+    url: "https://arpansingha.com", 
+    siteName: "Arpan Singha Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arpan Singha | Software Engineer",
+    description: "CS & Data Science student building elegant software at the intersection of AI, cloud, and the web.",
+  },
 };
 
 export default function RootLayout({
@@ -27,15 +42,16 @@ export default function RootLayout({
       <body className={`${ubuntuFont.className} min-h-screen flex flex-col antialiased bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
+          <Starfield />
           <ScrollProgress />
           <CursorGlow />
-          <TransitionProvider>
+          <main className="min-h-screen w-full flex flex-col">
             {children}
-          </TransitionProvider>
+          </main>
         </ThemeProvider>
       </body>
     </html>

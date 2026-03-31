@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+
 import { motion } from "framer-motion";
 import { Mail, ArrowUpRight } from "lucide-react";
 
@@ -25,8 +25,8 @@ const NAV_LINKS = [
   { label: "Home",     href: "/" },
   { label: "Projects", href: "/#projects" },
   { label: "GitHub",   href: "/#live" },
-  { label: "About",    href: "/about" },
-  { label: "Hire Me",  href: "/hire" },
+  { label: "About",    href: "/#about" },
+  { label: "Hire Me",  href: "/#hire" },
   { label: "Contact",  href: "/#contact" },
 ];
 
@@ -166,7 +166,7 @@ export function Footer() {
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.65rem" }}>
               {NAV_LINKS.map(({ label, href }) => (
                 <li key={label}>
-                  <Link
+                  <a
                     href={href}
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
@@ -182,7 +182,7 @@ export function Footer() {
                     className="footer-nav-link"
                   >
                     {label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

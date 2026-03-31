@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
-import { motion } from "framer-motion";
+import { useInView, motion, AnimatePresence } from "framer-motion";
 import { Briefcase, Award, BookOpen, Code2 } from "lucide-react";
 
 const STATS = [
-  { icon: Code2,    value: 4,  suffix: "+", label: "Projects Shipped",       color: "#3b82f6" },
-  { icon: Award,    value: 5,  suffix: "+", label: "Certifications Earned",  color: "#34d399" },
-  { icon: BookOpen, value: 2,  suffix: "",  label: "Degrees in Progress",    color: "#a78bfa" },
-  { icon: Briefcase,value: 3,  suffix: "+", label: "Years of Coding",        color: "#f59e0b" },
+  { icon: Code2,    value: 4,  suffix: "+", label: "Projects Shipped",       color: "#3b82f6", detail: "Apps, full-stack portals, and predictive ML models." },
+  { icon: Award,    value: 5,  suffix: "+", label: "Certifications Earned",  color: "#34d399", detail: "Microsoft Azure AI, NPTEL Python, SQL, and data science." },
+  { icon: BookOpen, value: 2,  suffix: "",  label: "Degrees in Progress",    color: "#a78bfa", detail: "Dual majoring: CSE (Parul Univ) & Data Science (IIT-M)." },
+  { icon: Briefcase,value: 3,  suffix: "+", label: "Years of Coding",        color: "#f59e0b", detail: "Consistently learning, building, and pushing boundaries." },
 ];
 
 function useCounter(target: number, active: boolean, duration = 1400) {
@@ -31,6 +30,7 @@ function useCounter(target: number, active: boolean, duration = 1400) {
 function StatCard({ stat, index, active }: { stat: typeof STATS[0]; index: number; active: boolean }) {
   const count = useCounter(stat.value, active);
   const Icon = stat.icon;
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <motion.div
@@ -46,7 +46,7 @@ function StatCard({ stat, index, active }: { stat: typeof STATS[0]; index: numbe
         padding: "2rem 1.75rem",
         overflow: "hidden",
         transition: "border-color 0.3s, background 0.3s",
-        cursor: "default",
+        cursor: "pointer",
         boxShadow: "var(--card-shadow)",
       }}
       whileHover={{
@@ -54,6 +54,7 @@ function StatCard({ stat, index, active }: { stat: typeof STATS[0]; index: numbe
         background: "var(--accent)",
         y: -4,
       }}
+      onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* Top accent glow */}
       <div style={{
@@ -72,17 +73,48 @@ function StatCard({ stat, index, active }: { stat: typeof STATS[0]; index: numbe
         <Icon size={18} style={{ color: stat.color }} />
       </div>
 
-      {/* Number */}
-      <p style={{
-        fontFamily: "'Bebas Neue', sans-serif",
-        fontSize: "clamp(2.8rem, 5vw, 4rem)",
-        letterSpacing: "0.02em",
-        lineHeight: 1,
-        color: "var(--foreground)",
-        marginBottom: "0.35rem",
-      }}>
-        {count}{stat.suffix}
-      </p>
+      {/* Number or Detail */}
+      <div style={{ minHeight: "4rem", display: "flex", flexDirection: "column", justifyContent: "flex-end", marginBottom: "0.35rem" }}>
+        <AnimatePresence mode="wait">
+          {!isFlipped ? (
+            <motion.p
+              key="number"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.15 }}
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.8rem, 5vw, 4rem)",
+                letterSpacing: "0.02em",
+                lineHeight: 1,
+                color: "var(--foreground)",
+                margin: 0,
+              }}
+            >
+              {count}{stat.suffix}
+            </motion.p>
+          ) : (
+            <motion.p
+              key="detail"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.15 }}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.86rem",
+                color: "var(--foreground)",
+                lineHeight: 1.5,
+                margin: 0,
+                opacity: 0.9,
+              }}
+            >
+              {stat.detail}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Label */}
       <p style={{

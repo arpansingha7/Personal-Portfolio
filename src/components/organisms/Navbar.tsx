@@ -1,14 +1,13 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { ThemeToggle } from "@/components/organisms/ThemeToggle";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Projects", href: "/#projects" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -157,18 +156,6 @@ export function Navbar() {
           75%, 100% { transform: scale(2); opacity: 0; }
         }
 
-        /* Theme toggle override */
-        .theme-wrap button {
-          color: var(--muted-foreground) !important;
-          background: transparent !important;
-          border: 1px solid var(--border) !important;
-          transition: all 0.2s !important;
-        }
-        .theme-wrap button:hover {
-          color: var(--foreground) !important;
-          border-color: var(--muted-foreground) !important;
-          background: var(--accent) !important;
-        }
 
         /* Mobile menu button */
         .mob-toggle {
@@ -274,10 +261,9 @@ export function Navbar() {
       >
         <div className={`nav-inner${scrolled ? " scrolled" : ""}`}>
 
-          {/* Logo */}
-          <Link href="/" className="nav-logo">
+          <a href="/" className="nav-logo">
             AS<span className="nav-logo-dot" />
-          </Link>
+          </a>
 
           {/* Center links */}
           <nav>
@@ -290,7 +276,7 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 + i * 0.07, duration: 0.4 }}
                 >
-                  <Link href={link.href}>{link.label}</Link>
+                  <a href={link.href}>{link.label}</a>
                 </motion.li>
               ))}
             </ul>
@@ -298,23 +284,20 @@ export function Navbar() {
 
           {/* Right */}
           <div className="nav-right">
-            <div className="theme-wrap">
-              <ThemeToggle />
-            </div>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.45, duration: 0.4 }}
             >
-              <Link href="/hire" className="hire-btn">
+              <a href="/#hire" className="hire-btn">
                 <span className="ping-dot">
                   <span className="ping-dot-ring" />
                   <span className="ping-dot-core" />
                 </span>
                 Hire Me
                 <ArrowUpRight size={11} strokeWidth={2} />
-              </Link>
+              </a>
             </motion.div>
 
             {/* Mobile toggle */}
@@ -358,18 +341,18 @@ export function Navbar() {
               {NAV_LINKS.map((link, i) => (
                 <div key={link.href} style={{ textAlign: "left" }}>
                   <span className="mob-num" style={{ textAlign: "left", marginBottom: "0.25rem" }}>0{i + 1}</span>
-                  <Link 
+                  <a 
                     href={link.href} 
                     className="mob-nav-link"
                     onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </div>
               ))}
     
-              <Link
-                href="/hire"
+              <a
+                href="/#hire"
                 className="hire-btn"
                 onClick={() => setMobileOpen(false)}
                 style={{ marginTop: "1rem" }}
@@ -380,7 +363,7 @@ export function Navbar() {
                 </span>
                 Hire Me
                 <ArrowUpRight size={11} strokeWidth={2} />
-              </Link>
+              </a>
             </motion.div>
           </>
         )}

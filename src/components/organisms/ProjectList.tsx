@@ -279,11 +279,13 @@ function ProjectRow({ project, idx }: { project: (typeof projects)[0]; idx: numb
 
       {/* Actions */}
       <div className="proj-actions">
-        <Magnetic>
-          <a href={project.link} className="proj-action-btn primary">
-            Live <ArrowUpRight size={11} strokeWidth={2} />
-          </a>
-        </Magnetic>
+        {project.link !== "#" && (
+          <Magnetic>
+            <a href={project.link} className="proj-action-btn primary" target="_blank" rel="noopener noreferrer">
+              Live <ArrowUpRight size={11} strokeWidth={2} />
+            </a>
+          </Magnetic>
+        )}
         <Magnetic>
           <a href={project.github} className="proj-action-btn ghost" target="_blank" rel="noopener noreferrer">
             <Computer size={11} /> Code
@@ -332,12 +334,15 @@ export function ProjectList() {
           font-family: 'Bebas Neue', sans-serif;
           font-size: clamp(3rem, 7vw, 6rem);
           letter-spacing: 0.01em;
-          color: var(--foreground);
           line-height: 0.92;
+          background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
         .projects-heading span {
-          -webkit-text-stroke: 1.5px var(--border);
-          color: transparent;
+          background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
         .projects-sub {
           font-family: 'DM Sans', sans-serif;

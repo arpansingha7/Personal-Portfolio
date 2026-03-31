@@ -12,20 +12,29 @@ export default function Magnetic({ children }: { children: ReactNode }) {
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
+  const rectRef = useRef<{ width: number; height: number; left: number; top: number } | null>(null);
+
+  const handleMouseEnter = () => {
+    if (ref.current) {
+      rectRef.current = ref.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
-    if (ref.current) {
-      const { width, height, left, top } = ref.current.getBoundingClientRect();
+    if (rectRef.current) {
+      const { width, height, left, top } = rectRef.current;
       const centerX = left + width / 2;
       const centerY = top + height / 2;
       const distanceX = clientX - centerX;
       const distanceY = clientY - centerY;
-      x.set(distanceX * 0.35);
-      y.set(distanceY * 0.35);
+      x.set(distanceX * 0.25);
+      y.set(distanceY * 0.25);
     }
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   };
@@ -33,6 +42,7 @@ export default function Magnetic({ children }: { children: ReactNode }) {
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}

@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Navbar } from "@/components/organisms/Navbar";
-import { Chatbot } from "@/components/organisms/Chatbot";
 import {
   ArrowUpRight,
   Download,
@@ -93,7 +91,7 @@ const CERTS = [
 ];
 
 const TIMELINE = [
-  { year: "2022", label: "Started B.Tech CSE — Parul University" },
+  { year: "2023", label: "Started B.Tech CSE — Parul University" },
   { year: "2023", label: "Joined IIT Madras BS Data Science program" },
   { year: "2023", label: "Azure AI Fundamentals certified" },
   { year: "2024", label: "Built Hospital Management System (Flask + SQLite)" },
@@ -116,9 +114,9 @@ function MatchBar({ value, color }: { value: number; color: string }) {
   );
 }
 
-export default function HirePage() {
+export function HireSection() {
   return (
-    <div style={{ minHeight: "100vh", background: "var(--background)", position: "relative" }}>
+    <section id="hire" style={{ position: "relative" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -318,8 +316,6 @@ export default function HirePage() {
       <div className="hire-bg-glow" />
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <Navbar />
-
         <main style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
           <div className="hire-wrap">
 
@@ -338,14 +334,9 @@ export default function HirePage() {
                 </span>
               </div>
 
-              <h1
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "clamp(3.5rem, 9vw, 8rem)",
-                  letterSpacing: "0.01em",
-                  lineHeight: 0.9,
-                  marginBottom: "1.5rem",
-                }}
+              <h2
+                className="section-heading"
+                style={{ marginBottom: "1.5rem" }}
               >
                 <span style={{
                   background: "linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%)",
@@ -361,7 +352,7 @@ export default function HirePage() {
                 }}>
                   GREAT THINGS.
                 </span>
-              </h1>
+              </h2>
 
               <p style={{
                 fontFamily: "'DM Sans', sans-serif",
@@ -729,8 +720,6 @@ export default function HirePage() {
           </div>
         </main>
       </div>
-
-      <Chatbot />
-    </div>
+    </section>
   );
 }

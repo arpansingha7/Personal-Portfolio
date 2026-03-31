@@ -116,13 +116,25 @@ export function HeroSection() {
           justify-content: center;
           pointer-events: none;
         }
-        .hero-role-tag span {
+        .hero-role-pill {
           background: var(--nav-bg);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border: 1px solid var(--nav-border);
           padding: 0.6rem 1.4rem;
           border-radius: 999px;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .glowing-green-capsule {
+          display: inline-block;
+          width: 8px;
+          height: 14px;
+          border-radius: 999px;
+          background-color: #22c55e;
+          box-shadow: 0 0 10px #22c55e, 0 0 20px rgba(34, 197, 94, 0.4);
+          margin-left: 0.6rem;
         }
 
         /* Abstract SVG shape */
@@ -256,14 +268,14 @@ export function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        <span>
-          {displayText}
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            className="inline-block w-px h-[1em] bg-current ml-1 align-middle"
+        <div className="hero-role-pill">
+          <span>{displayText}</span>
+          <motion.div
+            animate={{ opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="glowing-green-capsule"
           />
-        </span>
+        </div>
       </motion.div>
 
       {/* Abstract SVG shape */}
@@ -403,8 +415,8 @@ export function HeroSection() {
         <span className="hero-meta-item">Parul University &amp; IIT Madras</span>
         <span className="hero-meta-item">Specializing in AI / ML &amp; Cloud</span>
         <Magnetic>
-          <Link href="/#contact" className="hero-cta-btn">
-            Let&apos;s Work Together
+          <Link href="/#projects" className="hero-cta-btn">
+            View Projects
             <ArrowUpRight size={13} />
           </Link>
         </Magnetic>
