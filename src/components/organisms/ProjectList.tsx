@@ -8,20 +8,20 @@ import Magnetic from "@/components/Magnetic";
 const projects = [
   {
     index: "01",
-    title: "Hospital Management System",
-    description: "A comprehensive healthcare administration platform built with Python and Flask, handling patient records, scheduling, and billing workflows.",
-    tags: ["Python", "Flask", "SQLite"],
+    title: "VitaCare Health Portal",
+    description: "A full-stack hospital management system built with Python and Flask, featuring patient records, appointment scheduling, billing workflows, REST APIs, Chart.js analytics dashboards, and role-based access control.",
+    tags: ["Python", "Flask", "SQLite", "Chart.js", "REST API", "RBAC"],
     link: "#",
-    github: "https://github.com/arpansingha7",
+    github: "https://github.com/arpansingha7/VitaCare-Health-Portal",
     accent: "#3b82f6",
   },
   {
     index: "02",
-    title: "Placement Portal App",
-    description: "A centralized portal streamlining university placement and recruitment processes, connecting students with recruiters in real time.",
-    tags: ["Python", "Flask", "Web"],
+    title: "NextGen Campus Placement Portal",
+    description: "A centralized campus placement platform connecting students with recruiters in real time, featuring REST APIs, data visualizations, form validations, responsive UI/UX, and Flask-Login role-based access control.",
+    tags: ["Python", "Flask", "SQLite", "Chart.js", "Flask-Login", "REST API"],
     link: "#",
-    github: "https://github.com/arpansingha7",
+    github: "https://github.com/arpansingha7/NextGen-Campus-Placement-Portal",
     accent: "#34d399",
   },
   {
