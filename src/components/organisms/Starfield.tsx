@@ -24,6 +24,7 @@ export function Starfield() {
 
   useEffect(() => {
     // Generated ONLY on client-mount to prevent Next.js SSR hydration mismatch
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStarsBase(generateStars(800)); // Far, tiny stars (slow)
     setStarsMid(generateStars(300));  // Mid stars
     setStarsFar(generateStars(100));  // Close, bright stars (fast)

@@ -4,10 +4,12 @@ import * as React from "react";
 
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Projects", href: "/#projects" },
   { label: "About", href: "/#about" },
+  { label: "Resume", href: "/uploads/resume.pdf", external: true },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -110,24 +112,24 @@ export function Navbar() {
         .hire-btn {
           display: inline-flex;
           align-items: center;
-          gap: 0.45rem;
+          gap: 0.5rem;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.7rem;
-          font-weight: 500;
-          letter-spacing: 0.14em;
+          font-weight: 600;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--primary-foreground);
-          background: var(--primary);
+          color: var(--background);
+          background: var(--foreground);
           border: none;
-          padding: 0.6rem 1.2rem;
+          padding: 0.65rem 1.4rem;
           border-radius: 999px;
           cursor: pointer;
           text-decoration: none;
-          transition: opacity 0.2s, transform 0.2s;
+          transition: transform 0.25s, box-shadow 0.25s;
           white-space: nowrap;
-          box-shadow: var(--card-shadow);
+          box-shadow: 0 4px 20px rgba(255,255,255,0.1);
         }
-        .hire-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .hire-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255,255,255,0.2); }
         .hire-btn:active { transform: scale(0.97); }
 
         .ping-dot {
@@ -261,9 +263,9 @@ export function Navbar() {
       >
         <div className={`nav-inner${scrolled ? " scrolled" : ""}`}>
 
-          <a href="/" className="nav-logo">
+          <Link href="/" className="nav-logo">
             AS<span className="nav-logo-dot" />
-          </a>
+          </Link>
 
           {/* Center links */}
           <nav>
@@ -276,7 +278,13 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 + i * 0.07, duration: 0.4 }}
                 >
-                  <a href={link.href}>{link.label}</a>
+                  <Link 
+                    href={link.href} 
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                  >
+                    {link.label}
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -290,14 +298,14 @@ export function Navbar() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.45, duration: 0.4 }}
             >
-              <a href="/#hire" className="hire-btn">
+              <Link href="/#hire" className="hire-btn">
                 <span className="ping-dot">
                   <span className="ping-dot-ring" />
                   <span className="ping-dot-core" />
                 </span>
                 Hire Me
                 <ArrowUpRight size={11} strokeWidth={2} />
-              </a>
+              </Link>
             </motion.div>
 
             {/* Mobile toggle */}
@@ -341,17 +349,19 @@ export function Navbar() {
               {NAV_LINKS.map((link, i) => (
                 <div key={link.href} style={{ textAlign: "left" }}>
                   <span className="mob-num" style={{ textAlign: "left", marginBottom: "0.25rem" }}>0{i + 1}</span>
-                  <a 
+                  <Link 
                     href={link.href} 
                     className="mob-nav-link"
                     onClick={() => setMobileOpen(false)}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </div>
               ))}
     
-              <a
+              <Link
                 href="/#hire"
                 className="hire-btn"
                 onClick={() => setMobileOpen(false)}
@@ -363,7 +373,7 @@ export function Navbar() {
                 </span>
                 Hire Me
                 <ArrowUpRight size={11} strokeWidth={2} />
-              </a>
+              </Link>
             </motion.div>
           </>
         )}

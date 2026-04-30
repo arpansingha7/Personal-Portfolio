@@ -1,30 +1,94 @@
 import { NextResponse } from "next/server";
 
+const KNOWLEDGE_BASE = [
+  {
+    keywords: ["leetcode", "competitive programming", "dsa", "coding profile"],
+    response: "Arpan is active on LeetCode! You can check out his coding profile and problem-solving stats at https://leetcode.com/u/arpansingha7/."
+  },
+  {
+    keywords: ["tech", "stack", "skills", "languages", "programming", "tools", "frameworks"],
+    response: "Arpan is highly skilled in Python, SQL, C, Java, and TypeScript. His core focus is AI/ML (TensorFlow, Pandas, Scikit-learn) and Cloud platforms (AWS, Microsoft Azure). For web development, he uses Next.js, Flask, and builds robust REST APIs."
+  },
+  {
+    keywords: ["education", "school", "university", "college", "degree", "study"],
+    response: "Arpan is pursuing a rigorous dual-degree path: a B.Tech in Computer Science Engineering at Parul University (2023–2027) AND a BS in Data Science & Applications at IIT Madras. This gives him a unique blend of core software engineering and advanced data science expertise."
+  },
+  {
+    keywords: ["hospital", "management", "system"],
+    response: "His 'Hospital Management System' is a comprehensive healthcare administration platform built using Python, Flask, and SQLite. It handles patient records, scheduling workflows, and secure billing operations."
+  },
+  {
+    keywords: ["hyperlocal", "hiring", "network", "mern"],
+    response: "The 'Hyperlocal Hiring Network' is one of his major MERN stack projects. It's a localized job discovery platform featuring secure JWT authentication, Cloudinary image handling, and a highly responsive React/Next.js frontend."
+  },
+  {
+    keywords: ["placement", "portal"],
+    response: "His 'Placement Portal App' is a centralized platform designed to streamline university recruitment, connecting students with recruiters seamlessly in real-time. It was built using Python and Flask."
+  },
+  {
+    keywords: ["project", "work", "experience", "portfolio", "build"],
+    response: "Arpan has built several high-impact projects including a 'Hyperlocal Hiring Network' (MERN stack), a 'Hospital Management System' (Flask/Python), and a 'Placement Portal App'. He also represents the Gir House at IIT Madras in technical competitions!"
+  },
+  {
+    keywords: ["contact", "hire", "internship", "freelance", "email", "phone", "reach", "message", "open to work"],
+    response: "Arpan is Open to Work starting April 2026 for internships and full-time roles! You can email him at arpansingha16703@gmail.com, call +91 7001835922, or use the Contact Form at the bottom of the page."
+  },
+  {
+    keywords: ["location", "where", "live", "country", "city"],
+    response: "Arpan is based in India (IST time zone) and is completely open to remote work opportunities."
+  },
+  {
+    keywords: ["hello", "hi", "hey", "greetings", "who are you"],
+    response: "Hello! I'm Arpan's AI Assistant. I know all about his engineering skills, his dual degrees at IIT Madras & Parul University, his LeetCode profile, and his projects. What would you like to know?"
+  },
+  {
+    keywords: ["resume", "cv", "download"],
+    response: "You can view and download Arpan's latest resume directly from the Hero section of this portfolio, just click the 'View Resume' button!"
+  }
+];
+
 export async function POST(req: Request) {
   try {
     const { message } = await req.json();
 
-    // Mock RAG processing delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Mock processing delay for a more natural AI feel
+    await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 500));
 
     const lowercaseMsg = message.toLowerCase();
     
-    let response = "I'm a virtual agent representing Arpan. I can answer questions about his education, his skills in Data Science and CSE, and his availability. What would you like to know?";
+    // Split message into words for better matching
+    const words = lowercaseMsg.replace(/[^\w\s]/gi, '').split(/\s+/);
+    
+    let bestMatch = null;
+    let maxScore = 0;
 
-    if (lowercaseMsg.includes("tech") || lowercaseMsg.includes("stack") || lowercaseMsg.includes("skills")) {
-      response = "Arpan specializes in Python, SQL, AI/ML, and cloud platforms like AWS. He also holds a Microsoft Azure AI Fundamentals certification and has strong fundamentals in Computer Networking and Cybersecurity.";
-    } else if (lowercaseMsg.includes("education") || lowercaseMsg.includes("school") || lowercaseMsg.includes("university") || lowercaseMsg.includes("college")) {
-      response = "Arpan is pursuing a dual degree: a B.Tech in CSE at Parul University (2023-2027) and a BS in Data Science at IIT Madras. He previously completed his Class 12 at Satish Chandra Memorial School.";
-    } else if (lowercaseMsg.includes("project") || lowercaseMsg.includes("work") || lowercaseMsg.includes("experience")) {
-      response = "Arpan has built significant applications, notably two Python Flask-based backend architectures: a comprehensive 'Hospital Management System', and a university 'Placement Portal Application'.";
-    } else if (lowercaseMsg.includes("contact") || lowercaseMsg.includes("hire") || lowercaseMsg.includes("internship") || lowercaseMsg.includes("freelance")) {
-      response = "Arpan is looking for internships and new opportunities! You can reach him at 7001835922 or arpansingha16703@gmail.com, or through his LinkedIn: /in/-arpansingha-.";
-    } else if (lowercaseMsg.includes("hello") || lowercaseMsg.includes("hi")) {
-      response = "Hello! I'm Arpan's AI Agent. Ask me about his education at IIT Madras, his skills in Data Science, or his contact info.";
+    for (const entry of KNOWLEDGE_BASE) {
+      let score = 0;
+      // Check for exact phrase matches
+      for (const kw of entry.keywords) {
+        if (lowercaseMsg.includes(kw)) {
+          score += 2; // Phrase matches carry more weight
+        }
+      }
+      // Check for single word overlaps
+      for (const word of words) {
+        if (word.length > 2 && entry.keywords.some(kw => kw.includes(word))) {
+          score += 1;
+        }
+      }
+
+      if (score > maxScore) {
+        maxScore = score;
+        bestMatch = entry;
+      }
     }
 
+    const response = bestMatch && maxScore > 0
+      ? bestMatch.response 
+      : "That's an interesting question! I am Arpan's AI representative. I can tell you about his dual-degree education (IIT Madras), his tech stack (Python, Next.js, AI/ML), his latest projects, or his LeetCode profile. Try asking about one of those!";
+
     return NextResponse.json({ reply: response });
-  } catch (_error) {
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: "I'm having trouble connecting right now. Please try again later." }, { status: 500 });
   }
 }

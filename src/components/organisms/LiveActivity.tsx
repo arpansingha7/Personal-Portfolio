@@ -18,7 +18,7 @@ async function getRepos() {
     });
     if (!res.ok) throw new Error("Failed to fetch");
     return (await res.json()) as Repo[];
-  } catch (_error) {
+  } catch {
     return [];
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Computer, Globe } from "lucide-react";
+import { ArrowUpRight, Computer } from "lucide-react";
 import { useRef } from "react";
 import Magnetic from "@/components/Magnetic";
 

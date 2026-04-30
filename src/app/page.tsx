@@ -4,6 +4,7 @@ import { StatsCounter } from "@/components/organisms/StatsCounter";
 import { ProjectList } from "@/components/organisms/ProjectList";
 import { LiveActivity } from "@/components/organisms/LiveActivity";
 import { AboutSection } from "@/components/organisms/AboutSection";
+import { ExperienceTimeline } from "@/components/organisms/ExperienceTimeline";
 import { HireSection } from "@/components/organisms/HireSection";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { Chatbot } from "@/components/organisms/Chatbot";
@@ -28,6 +29,13 @@ export default function Home() {
         </div>
 
         <AboutSection />
+
+        {/* Divider */}
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+          <div style={{ borderTop: "1px solid var(--border)" }} />
+        </div>
+
+        <ExperienceTimeline />
 
         {/* Divider */}
         <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>

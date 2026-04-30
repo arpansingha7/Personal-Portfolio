@@ -33,7 +33,6 @@ const CONTACT_ITEMS = [
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isFocused, setIsFocused] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -256,8 +255,6 @@ export function ContactForm() {
                     <Input
                       name="name"
                       placeholder="Arpan Singha"
-                      onFocus={() => setIsFocused("name")}
-                      onBlur={() => setIsFocused(null)}
                       className="h-11 bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors"
                       required
                     />
@@ -268,8 +265,6 @@ export function ContactForm() {
                       type="email"
                       name="email"
                       placeholder="you@example.com"
-                      onFocus={() => setIsFocused("email")}
-                      onBlur={() => setIsFocused(null)}
                       className="h-11 bg-accent/20 border-border rounded-xl text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-0 focus-visible:border-muted-foreground transition-colors"
                       required
                     />
