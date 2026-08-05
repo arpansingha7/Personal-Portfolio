@@ -307,36 +307,7 @@ export function Navbar() {
             AS<span className="nav-logo-dot" />
           </Link>
 
-          {/* Center links */}
-          <nav>
-            <ul className="nav-links">
-              {NAV_LINKS.map((link, i) => (
-                <motion.li
-                  key={link.href}
-                  className="nav-link-item"
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.07, duration: 0.4 }}
-                >
-                  <Link 
-                    href={link.href} 
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
-                    className={!link.external && isActive(link.href) ? "nav-active" : ""}
-                  >
-                    {link.label}
-                    {!link.external && isActive(link.href) && (
-                      <motion.span
-                        className="nav-active-dot"
-                        layoutId="nav-dot"
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      />
-                    )}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </nav>
+          {/* Center links removed as per request */}
 
           {/* Right */}
           <div className="nav-right">
