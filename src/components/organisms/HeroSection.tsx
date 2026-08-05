@@ -102,6 +102,7 @@ export function HeroSection() {
           letter-spacing: 0.15em;
           text-transform: uppercase;
           color: var(--muted-foreground);
+          white-space: nowrap;
         }
 
         .glowing-green-capsule {
