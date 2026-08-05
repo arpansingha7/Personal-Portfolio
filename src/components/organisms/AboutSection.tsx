@@ -316,7 +316,7 @@ export function AboutSection() {
               <h2 className="section-heading">Skills</h2>
               <div
                 className="about-skills-grid"
-                style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "0.75rem" }}
+                style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "0.75rem" }}
               >
                 {SKILLS.map((group, i) => (
                   <motion.div
