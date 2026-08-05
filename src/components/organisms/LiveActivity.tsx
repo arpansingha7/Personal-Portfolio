@@ -68,7 +68,7 @@ export async function LiveActivity() {
 
   return (
     <section className="py-28 w-full" style={{ background: "var(--background)" }}>
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+      <div className="section-container">
 
         {/* Section header */}
         <div className="mb-10">

@@ -162,8 +162,7 @@ export function ExperienceTimeline() {
     <section id="experience" ref={containerRef} className="relative bg-background overflow-hidden">
       <style>{`
         .tl-section { padding: 8rem 0; }
-        .tl-container { max-width: 940px; margin: 0 auto; padding: 0 2.5rem; position: relative; }
-
+        .experience-wrap { position: relative; }
         .tl-header { text-align: center; margin-bottom: 2.5rem; }
         .tl-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 0.75rem; display: block; }
         .tl-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5rem); letter-spacing: 0.02em; line-height: 1; background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -217,16 +216,18 @@ export function ExperienceTimeline() {
 
         @media (max-width: 768px) {
           .tl-section { padding: 5rem 0; }
-          .tl-container { padding: 0 1.5rem; }
+          .experience-wrap { padding: 0 1.5rem; }
           .tl-line-bg { left: 28px; }
           .tl-dot { left: 14px; width: 28px; height: 28px; }
           .tl-item { padding-left: 56px; }
           .tl-card { padding: 1.25rem; }
+          .tl-title { font-size: clamp(2rem, 8vw, 2.5rem); }
         }
       `}</style>
 
-      <div className="tl-section">
-        <div className="tl-container">
+      <div className="experience-bg-mesh" />
+
+      <div className="experience-wrap section-container" ref={containerRef}>
           <motion.div className="tl-header" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <span className="tl-eyebrow">My Journey</span>
             <h2 className="tl-title">Experience &amp; Education</h2>
@@ -314,7 +315,6 @@ export function ExperienceTimeline() {
             </AnimatePresence>
           </div>
         </div>
-      </div>
     </section>
   );
 }

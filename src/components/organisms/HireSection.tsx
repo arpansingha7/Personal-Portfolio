@@ -121,9 +121,7 @@ export function HireSection() {
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
 
         .hire-wrap {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 2.5rem;
+          /* Uses global .section-container */
         }
 
         /* Glass card base */
@@ -303,7 +301,6 @@ export function HireSection() {
         }
 
         @media (max-width: 768px) {
-          .hire-wrap { padding: 0 1.5rem; }
           .hire-grid-2 { grid-template-columns: 1fr !important; }
           .hire-grid-4 { grid-template-columns: 1fr 1fr !important; }
         }
@@ -317,7 +314,7 @@ export function HireSection() {
 
       <div style={{ position: "relative", zIndex: 1 }}>
         <main style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
-          <div className="hire-wrap">
+          <div className="hire-wrap section-container">
 
             {/* ── HERO ─────────────────────────────────────────── */}
             <motion.div
@@ -370,7 +367,7 @@ export function HireSection() {
 
               <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
                 <a
-                  href="https://drive.google.com/uc?export=download&id=YOUR_RESUME_FILE_ID"
+                  href="/uploads/resume.pdf"
                   className="dl-btn"
                   target="_blank"
                   rel="noreferrer"

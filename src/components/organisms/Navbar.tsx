@@ -44,10 +44,7 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const isActive = (href: string) => {
-    const id = href.replace("/#", "");
-    return activeSection === id;
-  };
+
 
   return (
     <>

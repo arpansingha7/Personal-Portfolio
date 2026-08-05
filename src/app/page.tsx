@@ -13,7 +13,7 @@ import { Footer } from "@/components/organisms/Footer";
 import { ScrollProgress } from "@/components/organisms/ScrollProgress";
 
 const Divider = () => (
-  <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+  <div className="section-divider">
     <div style={{
       height: "1px",
       background: "linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%)",

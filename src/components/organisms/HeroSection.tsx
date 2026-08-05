@@ -73,10 +73,6 @@ export function HeroSection() {
         .hero-layout {
           position: relative;
           z-index: 20;
-          max-width: 1200px;
-          margin: 0 auto;
-          width: 100%;
-          padding: 0 2.5rem;
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
           align-items: center;
@@ -301,13 +297,20 @@ export function HeroSection() {
             width: 140%;
           }
         }
+        @media (max-width: 640px) {
+          .hero-layout { margin-top: 4rem; gap: 2rem; }
+          .hero-name-line { font-size: clamp(48px, 12vw, 60px); }
+          .hero-bio { font-size: 0.85rem; }
+          .hero-actions { flex-direction: column; width: 100%; gap: 1rem; }
+          .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+        }
       `}</style>
 
       {/* Backgrounds */}
       <div className="hero-bg-mesh" />
       <div className="hero-grain" />
 
-      <div className="hero-layout">
+      <div className="hero-layout section-container">
         {/* Left Side */}
         <div className="hero-left">
           <motion.div

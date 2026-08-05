@@ -160,7 +160,7 @@ export function StatsCounter() {
         pointerEvents: "none",
       }} />
 
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(1rem, 5vw, 2.5rem)" }}>
+      <div ref={ref} className="section-container">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

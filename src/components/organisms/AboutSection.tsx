@@ -72,9 +72,7 @@ export function AboutSection() {
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap');
 
         .about-wrap {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 2.5rem;
+          /* Layout wrapper */
         }
 
         .about-bg-glow {
@@ -162,9 +160,13 @@ export function AboutSection() {
         }
 
         @media (max-width: 768px) {
-          .about-wrap { padding: 0 1.5rem; }
           .about-grid-2 { grid-template-columns: 1fr !important; }
           .about-skills-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          .section-heading-about, .section-heading {
+            font-size: clamp(2rem, 8vw, 2.5rem);
+          }
         }
       `}</style>
 
@@ -172,7 +174,7 @@ export function AboutSection() {
 
       <div style={{ position: "relative", zIndex: 1 }}>
         <main style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
-          <div className="about-wrap">
+          <div className="about-wrap section-container">
 
             {/* ── HERO ────────────────────────────────────── */}
             <motion.div

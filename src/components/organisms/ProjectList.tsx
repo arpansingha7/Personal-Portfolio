@@ -202,8 +202,7 @@ export function ProjectList() {
     <section id="projects" style={{ padding: "8rem 0", background: "var(--background)" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
-        .projects-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
-        @media (max-width: 640px) { .projects-wrap { padding: 0 1.5rem; } }
+        .projects-wrap { /* Uses global .section-container */ }
         .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
         .projects-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted-foreground); opacity: 0.7; margin-bottom: 0.8rem; }
         .projects-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: 0.01em; line-height: 0.92; background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -211,10 +210,14 @@ export function ProjectList() {
         .projects-sub { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 300; line-height: 1.7; color: var(--muted-foreground); max-width: 300px; text-align: right; }
         .view-all-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: all 0.2s; margin-top: 0.75rem; }
         .view-all-btn:hover { color: var(--foreground); border-color: var(--foreground); }
-        @media (max-width: 640px) { .projects-header { flex-direction: column; align-items: flex-start; margin-bottom: 2.5rem; gap: 1.25rem; } .projects-sub { max-width: 100%; text-align: left; } }
+        @media (max-width: 640px) { 
+          .projects-header { flex-direction: column; align-items: flex-start; margin-bottom: 2.5rem; gap: 1.25rem; } 
+          .projects-sub { max-width: 100%; text-align: left; }
+          .projects-actions-col { align-items: flex-start !important; }
+        }
       `}</style>
 
-      <div className="projects-wrap">
+      <div className="projects-wrap section-container">
         {/* Header */}
         <motion.div
           ref={headRef}
@@ -229,7 +232,7 @@ export function ProjectList() {
               Featured<br /><span>Projects</span>
             </h2>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+          <div className="projects-actions-col" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
             <p className="projects-sub">
               7 projects — from AI agents to full-stack platforms and agri-tech solutions.
             </p>

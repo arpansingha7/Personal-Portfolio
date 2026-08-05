@@ -57,9 +57,7 @@ export function ContactForm() {
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
 
         .contact-wrap {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+          /* Uses global .section-container */
         }
 
         .contact-grid {
@@ -182,14 +180,13 @@ export function ContactForm() {
           .contact-sub { max-width: 100%; }
         }
         @media (max-width: 640px) {
-          .contact-wrap { padding: 0 1.25rem; }
           .contact-heading { margin-bottom: 0.75rem; }
           .contact-sub { margin-bottom: 1.5rem; font-size: 0.8rem; }
           .contact-grid { gap: 2.5rem; }
         }
       `}</style>
 
-      <div className="contact-wrap">
+      <div className="contact-wrap section-container">
         <div className="contact-grid">
 
           {/* Left: Info */}
