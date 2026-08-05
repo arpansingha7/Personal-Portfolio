@@ -10,59 +10,45 @@ import { ContactForm } from "@/components/organisms/ContactForm";
 import { Chatbot } from "@/components/organisms/Chatbot";
 import { BackToTop } from "@/components/organisms/BackToTop";
 import { Footer } from "@/components/organisms/Footer";
+import { ScrollProgress } from "@/components/organisms/ScrollProgress";
+
+const Divider = () => (
+  <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
+    <div style={{
+      height: "1px",
+      background: "linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%)",
+    }} />
+  </div>
+);
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background relative">
+      {/* Global scroll progress bar */}
+      <ScrollProgress />
+
       <Navbar />
 
       <main>
-        {/* Hero — full viewport */}
         <HeroSection />
-
-        {/* Animated stats counter */}
         <StatsCounter />
 
-        {/* Divider */}
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
-
+        <Divider />
         <AboutSection />
 
-        {/* Divider */}
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
-
+        <Divider />
         <ExperienceTimeline />
 
-        {/* Divider */}
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
-
+        <Divider />
         <ProjectList />
 
-        {/* Divider */}
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
-
+        <Divider />
         <HireSection />
 
-        {/* Divider */}
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
-
+        <Divider />
         <LiveActivity />
 
-        {/* Divider */}
-        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2.5rem" }}>
-          <div style={{ borderTop: "1px solid var(--border)" }} />
-        </div>
-
+        <Divider />
         <ContactForm />
       </main>
 
@@ -70,9 +56,8 @@ export default function Home() {
       <Chatbot />
       <BackToTop />
 
-      {/* Enhanced footer */}
+      {/* Footer */}
       <Footer />
     </div>
   );
 }
-

@@ -10,7 +10,7 @@ export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
   const [displayText, setDisplayText] = useState("");
-  const fullText = "Aspiring Software Engineer & Data Scientist";
+  const fullText = "AI Engineer · Full-Stack Dev · Data Scientist";
 
   useEffect(() => {
     let index = 0;
@@ -349,7 +349,7 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            A passionate engineer specializing in AI, Machine Learning, and Cloud architecture. Bringing ideas to life through elegant code and scalable design.
+            AI Platform Engineering Intern at Predixion AI. Dual-degree student — B.Tech CSE at Parul University &amp; BS Data Science at IIT Madras. Building intelligent systems that solve real problems.
           </motion.p>
 
           <motion.div

@@ -5,10 +5,10 @@ import { useInView, motion, AnimatePresence } from "framer-motion";
 import { Briefcase, Award, BookOpen, Code2 } from "lucide-react";
 
 const STATS = [
-  { icon: Code2,    value: 4,  suffix: "+", label: "Projects Shipped",       color: "#3b82f6", detail: "Apps, full-stack portals, and predictive ML models." },
-  { icon: Award,    value: 5,  suffix: "+", label: "Certifications Earned",  color: "#34d399", detail: "Microsoft Azure AI, NPTEL Python, SQL, and data science." },
-  { icon: BookOpen, value: 2,  suffix: "",  label: "Degrees in Progress",    color: "#a78bfa", detail: "Dual majoring: CSE (Parul Univ) & Data Science (IIT-M)." },
-  { icon: Briefcase,value: 3,  suffix: "+", label: "Years of Coding",        color: "#f59e0b", detail: "Consistently learning, building, and pushing boundaries." },
+  { icon: Code2,     value: 7,  suffix: "+", label: "Projects Shipped",       color: "#3b82f6", detail: "Full-stack portals, AI agents, ML models, and agri-tech platforms." },
+  { icon: Award,     value: 5,  suffix: "+", label: "Certifications Earned",  color: "#34d399", detail: "Microsoft Azure AI, NPTEL Networks, Cisco Cybersecurity, LinkedIn, GUVI." },
+  { icon: BookOpen,  value: 2,  suffix: "",  label: "Degrees in Progress",    color: "#a78bfa", detail: "Dual major: B.Tech CSE (Parul Univ) & BS Data Science (IIT Madras)." },
+  { icon: Briefcase, value: 4,  suffix: "+", label: "Years of Coding",        color: "#f59e0b", detail: "Building everything from REST APIs to autonomous AI agents since 2022." },
 ];
 
 function useCounter(target: number, active: boolean, duration = 1400) {
@@ -103,9 +103,9 @@ function StatCard({ stat, index, active }: { stat: typeof STATS[0]; index: numbe
               transition={{ duration: 0.15 }}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.86rem",
+                fontSize: "0.82rem",
                 color: "var(--foreground)",
-                lineHeight: 1.5,
+                lineHeight: 1.55,
                 margin: 0,
                 opacity: 0.9,
               }}
@@ -127,6 +127,17 @@ function StatCard({ stat, index, active }: { stat: typeof STATS[0]; index: numbe
         lineHeight: 1.5,
       }}>
         {stat.label}
+      </p>
+
+      {/* Flip hint */}
+      <p style={{
+        position: "absolute", bottom: "0.75rem", right: "1rem",
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: "0.55rem", letterSpacing: "0.1em",
+        color: "var(--muted-foreground)", opacity: 0.35,
+        textTransform: "uppercase",
+      }}>
+        {isFlipped ? "← Back" : "Tap for more"}
       </p>
     </motion.div>
   );
@@ -170,6 +181,11 @@ export function StatsCounter() {
             background: "linear-gradient(to right, var(--foreground), var(--muted-foreground))",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
           }}>By the Numbers</h2>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "0.78rem", fontWeight: 300,
+            color: "var(--muted-foreground)", marginTop: "0.5rem",
+          }}>Click any card to learn more</p>
         </motion.div>
 
         {/* Stats grid */}

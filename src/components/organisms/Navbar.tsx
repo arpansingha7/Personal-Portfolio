@@ -7,20 +7,47 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Projects", href: "/#projects" },
-  { label: "About", href: "/#about" },
-  { label: "Resume", href: "/uploads/resume.pdf", external: true },
-  { label: "Contact", href: "/#contact" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Projects",   href: "/#projects" },
+  { label: "About",      href: "/#about" },
+  { label: "Resume",     href: "/uploads/resume.pdf", external: true },
+  { label: "Contact",    href: "/#contact" },
 ];
+
+const SECTION_IDS = ["hero", "experience", "projects", "about", "hire", "contact"];
 
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState("");
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (v) => {
     setScrolled(v > 40);
   });
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+    );
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const isActive = (href: string) => {
+    const id = href.replace("/#", "");
+    return activeSection === id;
+  };
 
   return (
     <>
@@ -83,6 +110,7 @@ export function Navbar() {
           gap: 0.25rem;
           list-style: none;
         }
+        .nav-link-item { position: relative; }
         .nav-link-item a {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
@@ -95,10 +123,22 @@ export function Navbar() {
           border-radius: 999px;
           display: block;
           transition: color 0.2s, background 0.2s;
+          position: relative;
         }
-        .nav-link-item a:hover {
+        .nav-link-item a:hover,
+        .nav-link-item a.nav-active {
           color: var(--foreground);
           background: var(--accent);
+        }
+        .nav-active-dot {
+          position: absolute;
+          bottom: -2px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: var(--foreground);
         }
 
         /* Right cluster */
@@ -282,8 +322,16 @@ export function Navbar() {
                     href={link.href} 
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
+                    className={!link.external && isActive(link.href) ? "nav-active" : ""}
                   >
                     {link.label}
+                    {!link.external && isActive(link.href) && (
+                      <motion.span
+                        className="nav-active-dot"
+                        layoutId="nav-dot"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
                   </Link>
                 </motion.li>
               ))}

@@ -13,55 +13,56 @@ import {
 
 const SKILLS = [
   { category: "Languages", items: ["Python", "SQL", "C", "Java", "TypeScript"] },
-  { category: "AI / ML", items: ["TensorFlow", "Pandas", "NumPy", "Scikit-learn", "Jupyter"] },
-  { category: "Cloud", items: ["Microsoft Azure", "AWS", "Azure AI"] },
-  { category: "Web", items: ["Next.js", "Flask", "REST APIs", "HTML/CSS"] },
-  { category: "Tools", items: ["GitHub", "VS Code", "SQLite", "Postman"] },
+  { category: "AI / ML", items: ["TensorFlow", "Pandas", "NumPy", "Scikit-learn", "LangChain"] },
+  { category: "Cloud", items: ["Microsoft Azure", "AWS", "Azure AI", "Cloud APIs"] },
+  { category: "Web", items: ["Next.js", "Flask", "REST APIs", "Modern UI/UX"] },
+  { category: "Specialities", items: ["Speech Recognition", "Full-Stack Dev", "NLP", "Data Pipelines"] },
+  { category: "Tools", items: ["GitHub", "VS Code", "SQLite", "Postman", "Jupyter"] },
 ];
 
 const EDUCATION = [
   {
     school: "Parul University, Vadodara",
     degree: "B.Tech — Computer Science Engineering",
-    period: "2023 – Present",
+    period: "Sep 2023 – Apr 2027",
     note: "Core CS: algorithms, distributed systems, AI, networking, software engineering",
     accent: "#3b82f6",
   },
   {
     school: "IIT Madras",
     degree: "BS — Data Science & Applications",
-    period: "2023 – Present",
+    period: "May 2023 – 2027",
     note: "Statistics, ML, data engineering, programming-first curriculum",
     accent: "#34d399",
   },
   {
     school: "Satish Chandra Memorial School",
     degree: "Class 12, CBSE — PCM + CS",
-    period: "Graduated 2022",
-    note: "91.6%",
+    period: "Jun 2020 – Jul 2022",
+    note: "91.6% · PCM + Computer Science",
     accent: "#a78bfa",
   },
   {
     school: "Chakdaha Model School",
     degree: "Class 10, CBSE",
-    period: "Graduated 2020",
+    period: "Apr 2008 – Mar 2020",
     note: "91.6%",
     accent: "#a78bfa",
   },
 ];
 
 const CERTS = [
-  { name: "Azure AI Fundamentals", issuer: "Microsoft", color: "#3b82f6" },
-  { name: "Software Development Fundamentals", issuer: "LinkedIn", color: "#0a66c2" },
-  { name: "Internet Protocols", issuer: "NPTEL", color: "#f59e0b" },
-  { name: "Cybersecurity Essentials", issuer: "Cisco", color: "#34d399" },
-  { name: "Blockchain Technology", issuer: "HCL GUVI", color: "#a78bfa" },
+  { name: "Microsoft Certified: Azure AI Fundamentals", issuer: "Microsoft", color: "#3b82f6" },
+  { name: "Introduction to Career Skills in Software Development", issuer: "LinkedIn Learning", color: "#0a66c2" },
+  { name: "Computer Networks and Internet Protocol", issuer: "NPTEL", color: "#f59e0b" },
+  { name: "Introduction to Cybersecurity", issuer: "Cisco", color: "#34d399" },
+  { name: "Blockchain", issuer: "HCL GUVI", color: "#a78bfa" },
 ];
 
 const LANGUAGES_SPOKEN = [
-  { lang: "Bengali", level: "Native", pct: 100, color: "#3b82f6" },
+  { lang: "Bengali", level: "Native or Bilingual", pct: 100, color: "#3b82f6" },
   { lang: "English", level: "Full Professional", pct: 92, color: "#34d399" },
-  { lang: "Hindi", level: "Full Professional", pct: 90, color: "#a78bfa" },
+  { lang: "Hindi", level: "Native or Bilingual", pct: 95, color: "#a78bfa" },
 ];
 
 export function AboutSection() {
