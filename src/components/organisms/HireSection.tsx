@@ -97,6 +97,7 @@ const TIMELINE = [
   { year: "2024", label: "Built Hospital Management System (Flask + SQLite)" },
   { year: "2024", label: "Built Placement Portal for university use" },
   { year: "2025", label: "Network Monitor & Cybersecurity tools" },
+  { year: "2026", label: "AI Platform Engineering Intern at Predixion AI (Voice Agents & LMS)" },
   { year: "2026", label: "Open to full-time roles · SWE / DS / ML" },
 ];
 
@@ -313,7 +314,7 @@ export function HireSection() {
       <div className="hire-bg-glow" />
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <main style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
+        <div style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
           <div className="hire-wrap section-container">
 
             {/* ── HERO ─────────────────────────────────────────── */}
@@ -715,7 +716,7 @@ export function HireSection() {
             </motion.div>
 
           </div>
-        </main>
+        </div>
       </div>
     </section>
   );

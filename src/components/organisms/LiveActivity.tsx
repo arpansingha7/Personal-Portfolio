@@ -63,11 +63,96 @@ function timeAgo(dateStr: string) {
   return `${Math.floor(months / 12)}y ago`;
 }
 
+const FALLBACK_REPOS: Repo[] = [
+  {
+    id: 101,
+    name: "VitaCare-Health-Portal",
+    description: "Full-stack hospital management system in Python/Flask with patient records, appointments, and billing.",
+    stargazers_count: 3,
+    html_url: "https://github.com/arpansingha7/VitaCare-Health-Portal",
+    language: "Python",
+    default_branch: "main",
+    fork: false,
+    pushed_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+    topics: ["flask", "sqlite", "healthcare"],
+  },
+  {
+    id: 102,
+    name: "NextGen-Campus-Placement-Portal",
+    description: "Centralized campus recruitment platform connecting students and recruiters with role-based auth.",
+    stargazers_count: 2,
+    html_url: "https://github.com/arpansingha7/NextGen-Campus-Placement-Portal",
+    language: "Python",
+    default_branch: "main",
+    fork: false,
+    pushed_at: new Date(Date.now() - 86400000 * 5).toISOString(),
+    topics: ["flask", "job-portal", "recruitment"],
+  },
+  {
+    id: 103,
+    name: "Hyperlocal-Hiring-Network",
+    description: "Localized job discovery and application platform built on the MERN stack with JWT authentication.",
+    stargazers_count: 4,
+    html_url: "https://github.com/arpansingha7/Hyperlocal-Hiring-Network",
+    language: "TypeScript",
+    default_branch: "main",
+    fork: false,
+    pushed_at: new Date(Date.now() - 86400000 * 7).toISOString(),
+    topics: ["react", "nodejs", "mongodb"],
+  },
+  {
+    id: 104,
+    name: "Production-AI-Research-Agent",
+    description: "Autonomous multi-agent research workflow synthesizing web data and research papers via LangChain.",
+    stargazers_count: 5,
+    html_url: "https://github.com/arpansingha7/Production-AI-Research-Agent",
+    language: "Python",
+    default_branch: "main",
+    fork: false,
+    pushed_at: new Date(Date.now() - 86400000 * 10).toISOString(),
+    topics: ["ai-agent", "langchain", "llm"],
+  },
+  {
+    id: 105,
+    name: "AgriMandi",
+    description: "Agri-tech marketplace facilitating price discovery and direct trading for farmers and buyers.",
+    stargazers_count: 2,
+    html_url: "https://github.com/arpansingha7/AgriMandi",
+    language: "JavaScript",
+    default_branch: "main",
+    fork: false,
+    pushed_at: new Date(Date.now() - 86400000 * 14).toISOString(),
+    topics: ["agriculture", "marketplace"],
+  },
+  {
+    id: 106,
+    name: "Indic-Swipe-v2",
+    description: "Multilingual input method and swipe keyboard solution supporting Indian Indic scripts.",
+    stargazers_count: 3,
+    html_url: "https://github.com/arpansingha7/Indic-Swipe-v2",
+    language: "Java",
+    default_branch: "main",
+    fork: false,
+    pushed_at: new Date(Date.now() - 86400000 * 20).toISOString(),
+    topics: ["indic", "keyboard", "android"],
+  },
+];
+
+const FALLBACK_USER: GitHubUser = {
+  public_repos: 14,
+  followers: 8,
+  following: 12,
+  login: "arpansingha7",
+  avatar_url: "https://avatars.githubusercontent.com/u/arpansingha7",
+};
+
 export async function LiveActivity() {
-  const { repos, user } = await getGitHubData();
+  const data = await getGitHubData();
+  const repos = data.repos && data.repos.length > 0 ? data.repos : FALLBACK_REPOS;
+  const user = data.user || FALLBACK_USER;
 
   return (
-    <section className="py-28 w-full" style={{ background: "var(--background)" }}>
+    <section id="live" className="py-28 w-full" style={{ background: "var(--background)" }}>
       <div className="section-container">
 
         {/* Section header */}

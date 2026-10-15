@@ -42,8 +42,20 @@ const KNOWLEDGE_BASE = [
     response: "Hello! I'm Arpan's AI Assistant. I know all about his engineering skills, his dual degrees at IIT Madras & Parul University, his LeetCode profile, and his projects. What would you like to know?"
   },
   {
+    keywords: ["predixion", "current role", "company", "intern", "internship", "job", "current work", "mumbai"],
+    response: "Arpan is currently an AI Platform Engineering Intern at Predixion AI (Mumbai). He is architecting a multi-tenant SaaS loan collections platform that fuses an end-to-end Lead Management System (LMS) with autonomous AI-powered voice agents."
+  },
+  {
+    keywords: ["voice agent", "voice", "speech", "agentic", "agent", "llm", "ai platform"],
+    response: "At Predixion AI, Arpan develops Agentic AI modules and voice agents that automate outbound borrower engagement, handle dynamic conversation flows, and connect with client CRMs in real time."
+  },
+  {
+    keywords: ["certifications", "certificate", "azure", "cisco", "nptel", "credentials"],
+    response: "Arpan holds top industry credentials including Microsoft Certified: Azure AI Fundamentals, Cisco Introduction to Cybersecurity, NPTEL Computer Networks and Internet Protocol, and Blockchain from HCL GUVI."
+  },
+  {
     keywords: ["resume", "cv", "download"],
-    response: "You can view and download Arpan's latest resume directly from the Hero section of this portfolio, just click the 'View Resume' button!"
+    response: "You can view and download Arpan's latest resume directly using the 'View Resume' button in the Hero section or from the Hire Me section!"
   }
 ];
 

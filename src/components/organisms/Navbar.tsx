@@ -300,9 +300,27 @@ export function Navbar() {
       >
         <div className={`nav-inner${scrolled ? " scrolled" : ""}`}>
 
-          <Link href="/" className="nav-logo">
-            AS<span className="nav-logo-dot" />
-          </Link>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <Link href="/" className="nav-logo">
+              AS<span className="nav-logo-dot" />
+            </Link>
+            {activeSection && activeSection !== "hero" && (
+              <span
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.68rem",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "var(--muted-foreground)",
+                  borderLeft: "1px solid var(--border)",
+                  paddingLeft: "0.75rem",
+                }}
+                className="hidden md:inline-block"
+              >
+                {activeSection}
+              </span>
+            )}
+          </div>
 
           {/* Center links removed as per request */}
 
@@ -362,20 +380,32 @@ export function Navbar() {
                 <X size={24} />
               </button>
     
-              {NAV_LINKS.map((link, i) => (
-                <div key={link.href} style={{ textAlign: "left" }}>
-                  <span className="mob-num" style={{ textAlign: "left", marginBottom: "0.25rem" }}>0{i + 1}</span>
-                  <Link 
-                    href={link.href} 
-                    className="mob-nav-link"
-                    onClick={() => setMobileOpen(false)}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
-                  >
-                    {link.label}
-                  </Link>
-                </div>
-              ))}
+              {NAV_LINKS.map((link, i) => {
+                const isActive = activeSection === link.href.replace("/#", "");
+                return (
+                  <div key={link.href} style={{ textAlign: "left" }}>
+                    <span
+                      className="mob-num"
+                      style={{
+                        textAlign: "left",
+                        marginBottom: "0.25rem",
+                        color: isActive ? "var(--foreground)" : undefined,
+                      }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <Link 
+                      href={link.href} 
+                      className={`mob-nav-link ${isActive ? "active text-foreground" : ""}`}
+                      onClick={() => setMobileOpen(false)}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                  </div>
+                );
+              })}
     
               <Link
                 href="/#hire"

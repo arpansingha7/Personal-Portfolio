@@ -173,7 +173,7 @@ export function AboutSection() {
       <div className="about-bg-glow" />
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <main style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
+        <div style={{ paddingTop: "7rem", paddingBottom: "6rem" }}>
           <div className="about-wrap section-container">
 
             {/* ── HERO ────────────────────────────────────── */}
@@ -367,37 +367,104 @@ export function AboutSection() {
                   <p className="section-eyebrow" style={{ margin: 0 }}>Work history</p>
                 </div>
                 <h2 className="section-heading">Experience</h2>
-                <div className="glass-card" style={{ padding: "1.75rem" }}>
-                  <p style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.88rem",
-                    fontWeight: 500,
-                    color: "rgba(255,255,255,0.82)",
-                    marginBottom: "0.25rem",
-                  }}>
-                    Member, Gir House
-                  </p>
-                  <p style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.72rem",
-                    color: "#3b82f6",
-                    opacity: 0.85,
-                    fontWeight: 300,
-                    marginBottom: "0.75rem",
-                  }}>
-                    IIT Madras BS Program · Oct 2023 – Present
-                  </p>
-                  <p style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.78rem",
-                    fontWeight: 300,
-                    lineHeight: 1.75,
-                    color: "rgba(255,255,255,0.35)",
-                  }}>
-                    Represented Gir House in technical competitions (Paradox & Margazhi fests).
-                    Participated in academic showcases, peer learning, and cross-team collaboration
-                    resulting in multiple house-level wins.
-                  </p>
+                <div className="glass-card" style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "0.5rem" }}>
+                      <p style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: "0.92rem",
+                        fontWeight: 600,
+                        color: "var(--foreground)",
+                        marginBottom: "0.2rem",
+                      }}>
+                        AI Platform Engineering Intern
+                      </p>
+                      <span style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: "0.62rem",
+                        color: "#3b82f6",
+                        background: "rgba(59,130,246,0.12)",
+                        border: "1px solid rgba(59,130,246,0.3)",
+                        padding: "0.15rem 0.55rem",
+                        borderRadius: "999px",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                      }}>
+                        Current Role
+                      </span>
+                    </div>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.75rem",
+                      color: "#3b82f6",
+                      opacity: 0.9,
+                      fontWeight: 400,
+                      marginBottom: "0.45rem",
+                    }}>
+                      Predixion AI · May 2026 – Present · Mumbai
+                    </p>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.78rem",
+                      fontWeight: 300,
+                      lineHeight: 1.65,
+                      color: "var(--muted-foreground)",
+                    }}>
+                      Building enterprise LMS with autonomous voice agents and agentic AI pipelines automating borrower engagement.
+                    </p>
+                  </div>
+
+                  <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1rem" }}>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.86rem",
+                      fontWeight: 500,
+                      color: "var(--foreground)",
+                      marginBottom: "0.2rem",
+                    }}>
+                      Member, Gir House
+                    </p>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.72rem",
+                      color: "#34d399",
+                      opacity: 0.85,
+                      fontWeight: 300,
+                      marginBottom: "0.35rem",
+                    }}>
+                      IIT Madras BS Program · Oct 2023 – Present
+                    </p>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.76rem",
+                      fontWeight: 300,
+                      lineHeight: 1.65,
+                      color: "var(--muted-foreground)",
+                    }}>
+                      Represented Gir House in national competitions (Paradox & Margazhi fests) with academic showcases.
+                    </p>
+                  </div>
+
+                  <div style={{ borderTop: "1px solid var(--border)", paddingTop: "0.75rem" }}>
+                    <Link
+                      href="#experience"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: "0.68rem",
+                        fontWeight: 500,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                        color: "#3b82f6",
+                        textDecoration: "none",
+                        transition: "gap 0.2s",
+                      }}
+                    >
+                      View Full Timeline <ArrowUpRight size={12} />
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
 
@@ -518,7 +585,7 @@ export function AboutSection() {
             </motion.div>
 
           </div>
-        </main>
+        </div>
       </div>
     </section>
   );

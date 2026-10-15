@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowUpRight, Mail, Phone, ExternalLink, Send, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, ExternalLink, Send, CheckCircle2, Copy, Check } from "lucide-react";
 
 const CONTACT_ITEMS = [
   {
@@ -14,6 +14,7 @@ const CONTACT_ITEMS = [
     value: "arpansingha16703@gmail.com",
     href: "mailto:arpansingha16703@gmail.com",
     accent: "#3b82f6",
+    copyable: true,
   },
   {
     icon: Phone,
@@ -21,6 +22,7 @@ const CONTACT_ITEMS = [
     value: "+91 7001835922",
     href: "tel:+917001835922",
     accent: "#34d399",
+    copyable: true,
   },
   {
     icon: ExternalLink,
@@ -28,22 +30,34 @@ const CONTACT_ITEMS = [
     value: "/in/-arpansingha-",
     href: "https://www.linkedin.com/in/-arpansingha-",
     accent: "#a78bfa",
+    copyable: false,
   },
 ];
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const handleCopy = (e: React.MouseEvent, text: string, label: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedKey(label);
+    setTimeout(() => setCopiedKey(null), 2000);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const name = formData.get("name") as string;
-    const subject = formData.get("subject") as string || "Project Collaboration";
+    const subject = (formData.get("subject") as string) || "Project Collaboration";
     const bodyText = formData.get("message") as string;
     
     const finalBody = `Hi Arpan,\n\n${bodyText}\n\nBest regards,\n${name}`;
     window.location.href = `mailto:arpansingha16703@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(finalBody)}`;
     
+    form.reset();
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3500);
   };
@@ -208,29 +222,65 @@ export function ContactForm() {
               gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
               gap: "1rem",
             }}>
-              {CONTACT_ITEMS.map(({ icon: Icon, label, value, href, accent }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noreferrer" : undefined}
-                  className="contact-info-card"
-                >
+              {CONTACT_ITEMS.map(({ icon: Icon, label, value, href, accent, copyable }) => {
+                const isCopied = copiedKey === label;
+                return (
                   <div
-                    className="contact-info-icon"
-                    style={{ background: `${accent}12` }}
+                    key={label}
+                    className="contact-info-card relative group/card"
+                    style={{ position: "relative" }}
                   >
-                    <Icon size={14} style={{ color: accent, opacity: 0.9 }} />
+                    <a
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel={href.startsWith("http") ? "noreferrer" : undefined}
+                      className="flex items-center gap-3.5 flex-1 min-w-0 text-inherit no-underline"
+                    >
+                      <div
+                        className="contact-info-icon"
+                        style={{ background: `${accent}12` }}
+                      >
+                        <Icon size={14} style={{ color: accent, opacity: 0.9 }} />
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <span className="contact-info-label">{label}</span>
+                        <span className="contact-info-value" style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          {value}
+                        </span>
+                      </div>
+                    </a>
+
+                    {copyable ? (
+                      <button
+                        type="button"
+                        onClick={(e) => handleCopy(e, value, label)}
+                        title={`Copy ${label}`}
+                        aria-label={`Copy ${label}`}
+                        className="p-1.5 rounded-lg border border-border/60 hover:border-foreground/30 text-muted-foreground hover:text-foreground bg-accent/30 hover:bg-accent/70 transition-all flex-shrink-0 cursor-pointer ml-1"
+                      >
+                        {isCopied ? (
+                          <span className="flex items-center gap-1 text-[10px] text-emerald-400 font-medium">
+                            <Check size={12} className="text-emerald-400" />
+                            Copied
+                          </span>
+                        ) : (
+                          <Copy size={12} />
+                        )}
+                      </button>
+                    ) : (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Open ${label}`}
+                        className="p-1 text-muted-foreground/40 group-hover/card:text-muted-foreground transition-colors"
+                      >
+                        <ArrowUpRight size={13} />
+                      </a>
+                    )}
                   </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <span className="contact-info-label">{label}</span>
-                    <span className="contact-info-value" style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                      {value}
-                    </span>
-                  </div>
-                  <ArrowUpRight size={12} style={{ color: "var(--border)", flexShrink: 0 }} />
-                </a>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
 

@@ -49,9 +49,9 @@ export default function RootLayout({
           <Starfield />
           <ScrollProgress />
           <CursorGlow />
-          <main className="min-h-screen w-full flex flex-col">
+          <div className="min-h-screen w-full flex flex-col relative">
             {children}
-          </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

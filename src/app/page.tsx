@@ -10,8 +10,6 @@ import { ContactForm } from "@/components/organisms/ContactForm";
 import { Chatbot } from "@/components/organisms/Chatbot";
 import { BackToTop } from "@/components/organisms/BackToTop";
 import { Footer } from "@/components/organisms/Footer";
-import { ScrollProgress } from "@/components/organisms/ScrollProgress";
-
 const Divider = () => (
   <div className="section-divider">
     <div style={{
@@ -24,9 +22,6 @@ const Divider = () => (
 export default function Home() {
   return (
     <div className="min-h-screen bg-background relative">
-      {/* Global scroll progress bar */}
-      <ScrollProgress />
-
       <Navbar />
 
       <main>
