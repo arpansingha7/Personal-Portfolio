@@ -70,9 +70,10 @@ export function Navbar() {
         .nav-inner.scrolled {
           padding: 1rem 2.5rem;
           background: var(--nav-bg);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
           border-bottom: 1px solid var(--nav-border);
+          box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
         /* Logo */
@@ -154,18 +155,22 @@ export function Navbar() {
           font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--background);
-          background: var(--foreground);
-          border: none;
+          color: #ffffff;
+          background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+          border: 1px solid rgba(255, 255, 255, 0.15);
           padding: 0.65rem 1.4rem;
           border-radius: 999px;
           cursor: pointer;
           text-decoration: none;
-          transition: transform 0.25s, box-shadow 0.25s;
+          transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
           white-space: nowrap;
-          box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+          box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
         }
-        .hire-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255,255,255,0.2); }
+        .hire-btn:hover { 
+          transform: translateY(-2px); 
+          box-shadow: 0 6px 24px rgba(37, 99, 235, 0.55);
+          filter: brightness(1.08);
+        }
         .hire-btn:active { transform: scale(0.97); }
 
         .ping-dot {

@@ -11,10 +11,10 @@ import { Chatbot } from "@/components/organisms/Chatbot";
 import { BackToTop } from "@/components/organisms/BackToTop";
 import { Footer } from "@/components/organisms/Footer";
 const Divider = () => (
-  <div className="section-divider">
+  <div className="section-divider my-2">
     <div style={{
       height: "1px",
-      background: "linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%)",
+      background: "linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.15) 20%, rgba(167,139,250,0.2) 50%, rgba(52,211,153,0.15) 80%, transparent 100%)",
     }} />
   </div>
 );

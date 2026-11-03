@@ -82,13 +82,13 @@ export function HeroSection() {
 
         .hero-name-line {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: clamp(60px, 8vw, 130px);
-          background: linear-gradient(135deg, var(--foreground) 0%, oklch(0.65 0.2 240) 100%);
+          font-size: clamp(60px, 8.5vw, 135px);
+          background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 45%, #60a5fa 85%, #3b82f6 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           color: transparent;
           letter-spacing: -0.01em;
-          filter: drop-shadow(0 0 25px rgba(59,130,246,0.15));
+          filter: drop-shadow(0 0 35px rgba(59,130,246,0.22));
         }
 
         .hero-bio {
@@ -118,17 +118,19 @@ export function HeroSection() {
           font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--background);
-          background: var(--foreground);
-          padding: 0.8rem 1.8rem;
+          color: #ffffff;
+          background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          padding: 0.85rem 1.9rem;
           border-radius: 999px;
           text-decoration: none;
-          box-shadow: 0 4px 20px rgba(255,255,255,0.15);
-          transition: transform 0.25s, box-shadow 0.25s;
+          box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
         }
         .btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(255,255,255,0.25);
+          box-shadow: 0 8px 28px rgba(37, 99, 235, 0.6);
+          filter: brightness(1.1);
         }
 
         .btn-secondary {
