@@ -585,7 +585,7 @@ export async function LiveActivity() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <FolderGit2 className="w-4 h-4 text-muted-foreground/70 group-hover:text-foreground transition-colors flex-shrink-0" />
-                          <CardTitle className="text-sm font-semibold text-foreground/90 group-hover:text-foreground transition-colors truncate">
+                          <CardTitle className="font-sans text-[15px] font-semibold tracking-normal normal-case text-foreground/90 group-hover:text-foreground transition-colors truncate">
                             {repo.displayName}
                           </CardTitle>
                         </div>
