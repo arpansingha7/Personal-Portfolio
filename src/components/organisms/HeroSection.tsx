@@ -47,9 +47,8 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} id="hero" className="relative w-full min-h-screen overflow-hidden bg-[#0a0a0a] flex items-center">
+    <section ref={containerRef} id="hero" className="relative w-full min-h-screen overflow-hidden flex items-center" style={{ background: "var(--background)" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
 
         .hero-bg-mesh {
           position: absolute;

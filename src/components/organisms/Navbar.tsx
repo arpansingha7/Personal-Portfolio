@@ -49,7 +49,6 @@ export function Navbar() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
 
         .nav-root {
           position: fixed;

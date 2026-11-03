@@ -147,7 +147,6 @@ export function ProjectList() {
   return (
     <section id="projects" style={{ padding: "8rem 0", background: "var(--background)" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
         .projects-wrap { /* Uses global .section-container */ }
         .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
         .projects-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted-foreground); opacity: 0.7; margin-bottom: 0.8rem; }

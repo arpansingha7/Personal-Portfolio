@@ -49,7 +49,6 @@ export function Footer() {
   return (
     <footer style={{ background: "var(--background)", borderTop: "1px solid var(--border)" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
         .footer-wrap {
           max-width: 1100px;
           margin: 0 auto;
