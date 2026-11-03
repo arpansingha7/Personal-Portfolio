@@ -3,25 +3,12 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, FileText } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Magnetic from "@/components/Magnetic";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const [displayText, setDisplayText] = useState("");
-  const fullText = "AI Engineer · Full-Stack Dev · Data Scientist";
-
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      setDisplayText(fullText.slice(0, index));
-      index++;
-      if (index > fullText.length) clearInterval(timer);
-    }, 50);
-    return () => clearInterval(timer);
-  }, []);
-
   // 3D Tilt for Photo Card
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -85,33 +72,6 @@ export function HeroSection() {
           flex-direction: column;
           align-items: flex-start;
           gap: 1.5rem;
-        }
-
-        .hero-role-pill {
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255,255,255,0.08);
-          padding: 0.5rem 1.2rem;
-          border-radius: 999px;
-          display: inline-flex;
-          align-items: center;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.75rem;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: var(--muted-foreground);
-          white-space: nowrap;
-        }
-
-        .glowing-green-capsule {
-          display: inline-block;
-          width: 6px;
-          height: 12px;
-          border-radius: 999px;
-          background-color: #22c55e;
-          box-shadow: 0 0 10px #22c55e, 0 0 20px rgba(34, 197, 94, 0.4);
-          margin-left: 0.8rem;
         }
 
         .hero-name-block {
@@ -313,20 +273,6 @@ export function HeroSection() {
       <div className="hero-layout section-container">
         {/* Left Side */}
         <div className="hero-left">
-          <motion.div
-            className="hero-role-pill"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            <span>{displayText}</span>
-            <motion.div
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="glowing-green-capsule"
-            />
-          </motion.div>
-
           <div className="hero-name-block">
             <motion.span
               className="hero-name-line"
